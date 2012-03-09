@@ -75,6 +75,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.17.2)
     multi_json (1.1.0)
+    mysql (2.8.1)
     oauth (0.4.5)
     omniauth (1.0.3)
       hashie (~> 1.2)
@@ -85,6 +86,7 @@ GEM
     omniauth-twitter (0.0.8)
       omniauth-oauth (~> 1.0)
     orm_adapter (0.0.6)
+    pg (0.13.2)
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.2)
@@ -146,7 +148,9 @@ DEPENDENCIES
   devise (~> 2.0.4)
   haml-rails (~> 0.3.4)
   jquery-rails
+  mysql
   omniauth-twitter (~> 0.0.8)
+  pg
   rails (= 3.2.1)
   sass-rails (~> 3.2.3)
   twitter-bootstrap-rails (~> 2.0.3)
