@@ -46,17 +46,19 @@
               
 
     .container
-
+      .row
+        .span12
+          test flash
+          = flash[:notice]
+          = flash[:error]
       .content
         .row
-          .span9
-            = flash[:notice]
-            = flash[:error]
+          .span8
             = yield
           .span1 &nbsp;
-          .span3
+          .span4
             .well.sidebar-nav
-              %h3 Sidebar
+              %h3 What it's about - 
               %ul.nav.nav-list
                 %li.nav-header Sidebar
                 %li= link_to "Link 1", "/path1"
