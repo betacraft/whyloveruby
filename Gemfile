@@ -29,6 +29,7 @@ gem "redcarpet", "~> 1.17.2"
 gem "will_paginate", "~> 3.0.3"
 gem "nokogiri", "~> 1.5.2"
 gem "pygmentize", "~> 0.0.3"
+gem "exception_notification", "~> 2.5.2"
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
