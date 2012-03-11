@@ -78,6 +78,7 @@ GEM
     mime-types (1.17.2)
     multi_json (1.1.0)
     mysql2 (0.3.11)
+    newrelic_rpm (3.3.2)
     nokogiri (1.5.2)
     oauth (0.4.5)
     omniauth (1.0.3)
@@ -156,6 +157,7 @@ DEPENDENCIES
   haml-rails (~> 0.3.4)
   jquery-rails
   mysql2
+  newrelic_rpm
   nokogiri (~> 1.5.2)
   omniauth-twitter (~> 0.0.8)
   pg
