@@ -49,8 +49,14 @@
     .container
       .row
         .span12
-          = flash[:notice]
-          = flash[:error]
+          - if flash[:notice]
+            .alert.alert-success
+              %a.close{"data-dismiss" => "alert"} ×
+              = flash[:notice]
+          - if flash[:error]
+            .alert.alert-error
+              %a.close{"data-dismiss" => "alert"} ×
+              = flash[:error]
       .content
         .row
           .span8
