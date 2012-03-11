@@ -58,11 +58,40 @@
           .span4
             .well.sidebar-nav
               %h3 What it's about - 
-              %ul.nav.nav-list
-                %li.nav-header Sidebar
-                %li= link_to "Link 1", "/path1"
-                %li= link_to "Link 2", "/path2"
-                %li= link_to "Link 3", "/path3"
+              %p
+                I really love ruby language, and so does many folks using it. So, this is an attempt to collect resons for that from everybody.
+              %p
+                So, just put in here -
+                %ul
+                  %li
+                    The first thing, that comes to your mind about awesomeness of Ruby.
+                  %li
+                    Thing, of which you feel relived, when you think of coding Ruby than any other language.
+                  %li
+                    Or just imagine yourself writing a love letter to Ruby, with her best qualities, and write a one here.
+              %p
+                .socialShares
+                  %a.twitter-share-button{"data-via" => "rtdp", :href => "https://twitter.com/share", class: 'pull-right'} Tweet
+                %br
+                .clr  
+                :javascript
+                     !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+            .well.sidebar-nav
+              %p
+                %h4
+                  Recently submitted by - 
+              %table{class: 'recentsTable table table-striped '}  
+                - @recent_letters.each do |l|
+                  %tr
+                    %td
+                      .thumbnail.pull-left
+                        = image_tag l.user.image, style: 'width:24px;'
+                      .info.pull-left  
+                        = "#{l.user.name} (#{l.user.twitter_handle})"
+                        %br
+                        %small.timeAgo
+                          = time_ago_in_words l.created_at
+                          ago
     
       %footer
         %p 
