@@ -58,6 +58,24 @@ module Myloveruby
 
     # heroku fix
     config.assets.initialize_on_precompile = false
+
+    # exception notification - 
+    Myloveruby::Application.config.middleware.use ExceptionNotifier,
+        :email_prefix => "[My Love Ruby] ",
+        :sender_address => %{"notifier" <notifier@example.com>},
+        :exception_recipients => %w{rtdp@rainingclouds.com}
+
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      :address              => "smtp.gmail.com",
+      :port                 => 587,
+      :domain               => 'smtp.gmail.com',
+      :user_name            => 'droid@rainingclouds.com',
+      :password             => 'droidcloudhere',
+      :authentication       => 'plain',
+      :enable_starttls_auto => true
+    }
+
      
   end
 end
