@@ -10,8 +10,10 @@ LikeButton = {
   init: function(){
           $('.likeButton').click(function(event){
             event.preventDefault();
-            $(this).addClass('disabled')
-            LikeButton.handleClick(this)
+            if(!$(this).hasClass('disabled')){
+              $(this).addClass('disabled')
+              LikeButton.handleClick(this)
+            }
           })
         },
 

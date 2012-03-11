@@ -11,6 +11,11 @@ class LettersController < ApplicationController
     redirect_to root_path
   end
 
+  def show
+    @recent_letters = Letter.limit(5).order(:created_at).includes(:user)
+    @letter = Letter.find(params[:id])
+  end
+
   def edit
     @letter = current_user.letter.find(params[:id])
   end

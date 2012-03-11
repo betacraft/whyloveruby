@@ -19,9 +19,9 @@
               %div{class: "countNumber #{letter.id}"}
                 = letter.likes.count
               - if user_signed_in?  
-                = link_to 'Like It', '#', class: "btn likeButton #{letter.like_by?(current_user) ? 'disabled' : ''}", data: {url: like_letter_path(letter)}
+                = link_to 'UpVote', '#', class: "btn likeButton #{letter.like_by?(current_user) ? 'disabled' : ''}", data: {url: like_letter_path(letter)}
               - else
-                = link_to 'Like It', '#', class: 'btn', rel: 'popover', data: {content: "You need to login first to Like it. ", title: 'Oops !!'}
+                = link_to 'UpVote', '#', class: 'btn', rel: 'popover', data: {content: "You need to login first to Like it. ", title: 'Oops !!'}
             .personalInfo.pull-right
               %ul.thumbnails.pull-right
                 .span1.thumbnail{style:'height:48px; width:48px;'}
@@ -32,7 +32,11 @@
                 %strong
                   @
                   =letter.user.twitter_handle
-        = markdown(letter.description)
+        .letterDescription          
+          = markdown(letter.description)
+        %br
+        .letterActions.pull-right
+          = link_to "More", letter_path(letter)
         %hr
     = page_navigation_links @letters
           
