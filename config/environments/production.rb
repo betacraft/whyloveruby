@@ -66,7 +66,7 @@ Myloveruby::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
   
   # exception notification - 
-  Whatever::Application.config.middleware.use ExceptionNotifier,
+  Myloveruby::Application.config.middleware.use ExceptionNotifier,
       :email_prefix => "[My Love Ruby] ",
       :sender_address => %{"notifier" <notifier@example.com>},
       :exception_recipients => %w{rtdp@rainingclouds.com}
