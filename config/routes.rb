@@ -3,7 +3,11 @@ Myloveruby::Application.routes.draw do
     match '/logout' => 'devise/sessions#destroy'
   end
 
-  resources :letters
+  resources :letters do
+    member do
+      get :like
+    end
+  end
 
   root to: 'home#index'
 

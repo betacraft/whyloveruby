@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   attr_accessible :remember_me, :name, :twitter_handle, :twitter_description, :twitter_description, :twitter_oauth, :website, :image
 
   has_many :letters
+  has_many :likes
 
   class << self
     def find_for_twitter_oauth(auth)

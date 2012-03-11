@@ -3,7 +3,11 @@
     %h3 I Love Ruby Because .. 
     = form_for @letter do |f|
       = f.text_area :description, class: 'reasonText'
-      = f.submit 'Submit', class: 'btn primary pull-right'
+      - if user_signed_in?
+        = f.submit 'Submit', class: 'btn primary pull-right'
+      -else
+        = link_to 'Submit', '#', class: 'btn primary pull-right disabled', rel: 'popover', data: {title: 'Oops!!', content: 'You need to login first to submit!!'}
+
 %hr
 .row
   .span8
@@ -11,11 +15,17 @@
       %ul.breadcrumb.letters
         %li
           .voteCount.span2.pull-left
+            %div{class: "countNumber #{letter.id}"}
+              = letter.likes.count
+            - if user_signed_in?  
+              = link_to 'Like It', '#', class: "btn likeButton #{letter.like_by?(current_user) ? 'disabled' : ''}", data: {url: like_letter_path(letter)}
+            - else
+              = link_to 'Like It', '#', class: 'btn', rel: 'popover', data: {content: "You need to login first to Like it. ", title: 'Oops !!'}
           .personalInfo.pull-right
             %ul.thumbnails.pull-right
               .span1.thumbnail{style:'height:48px; width:48px;'}
                 = image_tag letter.user.image
-            .span5.pull-right.names
+            .span4.pull-right.names
               = letter.user.name
               %br  
               %strong

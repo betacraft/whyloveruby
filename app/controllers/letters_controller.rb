@@ -24,4 +24,13 @@ class LettersController < ApplicationController
     redirect_to root_path
   end
 
+  def like
+    @letter = Letter.find(params[:id])
+    if Like.create(letter_id: @letter.id, user_id: current_user.id)
+      render :json => { success: true, message: 'Like saved..', likes: @letter.likes.count, id: @letter.id }
+    else
+      render :json => { success: false, message: 'Error saving like ..' }
+    end
+  end
+
 end
