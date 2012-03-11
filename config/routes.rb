@@ -3,6 +3,8 @@ Myloveruby::Application.routes.draw do
     match '/logout' => 'devise/sessions#destroy'
   end
 
+  resources :letters
+
   root to: 'home#index'
 
   # The priority is based upon order of creation:

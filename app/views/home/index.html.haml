@@ -1,4 +1,26 @@
-.row-fulid
-  .span6
+.row
+  .span8
     %h3 I Love Ruby Because .. 
-    %textarea.reasonText
+    = form_for @letter do |f|
+      = f.text_area :description, class: 'reasonText'
+      = f.submit 'Submit', class: 'btn primary pull-right'
+%hr
+.row
+  .span8
+    - @letters.each do |letter|    
+      %ul.breadcrumb.letters
+        %li
+          .voteCount.span2.pull-left
+          .personalInfo.pull-right
+            %ul.thumbnails.pull-right
+              .span1.thumbnail{style:'height:48px; width:48px;'}
+                = image_tag letter.user.image
+            .span5.pull-right.names
+              = letter.user.name
+              %br  
+              %strong
+                @
+                =letter.user.twitter_handle
+      = Redcarpet.new(letter.description).to_html.html_safe
+      %hr
+          

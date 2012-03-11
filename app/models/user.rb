@@ -4,7 +4,9 @@ class User < ActiveRecord::Base
   devise :registerable, :rememberable, :trackable, :omniauthable, :database_authenticatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :remember_me, :name, :twitter_handle, :twitter_description, :twitter_description, :twitter_oauth, :website
+  attr_accessible :remember_me, :name, :twitter_handle, :twitter_description, :twitter_description, :twitter_oauth, :website, :image
+
+  has_many :letters
 
   class << self
     def find_for_twitter_oauth(auth)
@@ -17,8 +19,9 @@ class User < ActiveRecord::Base
           name: auth["info"]["name"],
           twitter_handle: auth["info"]["nickname"],
           twitter_description: auth["info"]["description"],
-          website: auth["info"]["website"],
-          twitter_oauth: auth["credentials"]["token"]
+          website: (auth["info"]["urls"]["Website"] rescue nil),
+          twitter_oauth: auth["credentials"]["token"],
+          image: auth["info"]["image"]
         )
       end
 
