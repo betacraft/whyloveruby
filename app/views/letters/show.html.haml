@@ -21,4 +21,9 @@
                 @
                 =@letter.user.twitter_handle
       = markdown(@letter.description)
+      %br
+      .letterActions.pull-right
+        - if user_signed_in?
+          - if(current_user.id.to_i == @letter.user_id.to_i)
+            = link_to "Edit", edit_letter_path(@letter)
       %hr

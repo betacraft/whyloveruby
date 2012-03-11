@@ -39,6 +39,10 @@
         %br
         .letterActions.pull-right
           = link_to "More", letter_path(letter)
+          - if user_signed_in?
+            - if(current_user.id.to_i == letter.user_id.to_i)
+              |
+              = link_to "Edit", edit_letter_path(letter)
         %hr
     = page_navigation_links @letters
           

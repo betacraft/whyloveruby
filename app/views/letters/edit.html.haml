@@ -1,0 +1,8 @@
+.row
+  .span8
+    %h3 I Love Ruby Because .. 
+    = form_for @letter do |f|
+      = f.text_area :description, class: 'reasonText'
+      .markTest.pull-left
+        *Markdown supported.
+      = f.submit 'Submit', class: 'btn primary pull-right'

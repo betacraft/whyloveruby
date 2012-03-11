@@ -1,14 +1,17 @@
 class LettersController < ApplicationController
 
   respond_to :html
+  before_filter :authenticate_user!
 
   def create
-    if current_user.letters.create(params[:letter])
+    @letter = current_user.letters.new(params[:letter])
+    if @letter.save
       flash[:notice] = 'Saved successfully !!'
+      redirect_to letter_path(@letter)
     else
       flash[:error] = 'Oopss !! Error. Please try again.'
+      redirect_to root_path
     end
-    redirect_to root_path
   end
 
   def show
@@ -17,16 +20,18 @@ class LettersController < ApplicationController
   end
 
   def edit
-    @letter = current_user.letter.find(params[:id])
+    @recent_letters = Letter.limit(5).order(:created_at).includes(:user)
+    @letter = current_user.letters.find(params[:id])
   end
 
   def update
-    if current_user.letter.find(params[:id]).update_attributes(params[:letter])
-      flash[:notice] = 'updated successfully !!'
+    @letter = current_user.letters.find(params[:id])
+    if @letter.update_attributes(params[:letter])
+      flash[:notice] = 'Updated Successfully !!'
     else
       flash[:error] = 'Oopss !! Error. Please try again.'
     end
-    redirect_to root_path
+    redirect_to letter_path(@letter)
   end
 
   def like

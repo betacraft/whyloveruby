@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   class << self
     def find_for_twitter_oauth(auth)
-      user = User.find_by_twitter_oauth(auth.auth_token)
+      user = User.find_by_twitter_oauth(auth["credentials"]["token"])
 
       if user
         user

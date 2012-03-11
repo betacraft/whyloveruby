@@ -106,8 +106,9 @@
                         = "#{l.user.name} (#{l.user.twitter_handle})"
                         %br
                         %small.timeAgo
-                          = time_ago_in_words l.created_at
-                          ago
+                          = link_to letter_path(l) do 
+                            = time_ago_in_words l.created_at
+                            ago
     
       %footer
         %p 
