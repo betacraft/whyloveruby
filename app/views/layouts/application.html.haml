@@ -97,18 +97,19 @@
                 %h4
                   Recently submitted by - 
               %table{class: 'recentsTable table table-striped '}  
-                - @recent_letters.each do |l|
-                  %tr
-                    %td
-                      .thumbnail.pull-left
-                        = image_tag l.user.image, style: 'width:24px;'
-                      .info.pull-left  
-                        = "#{l.user.name} (#{l.user.twitter_handle})"
-                        %br
-                        %small.timeAgo
-                          = link_to letter_path(l) do 
-                            = time_ago_in_words l.created_at
-                            ago
+                - if @recent_letters.present?
+                  - @recent_letters.each do |l|
+                    %tr
+                      %td
+                        .thumbnail.pull-left
+                          = image_tag l.user.image, style: 'width:24px;'
+                        .info.pull-left  
+                          = "#{l.user.name} (#{l.user.twitter_handle})"
+                          %br
+                          %small.timeAgo
+                            = link_to letter_path(l) do 
+                              = time_ago_in_words l.created_at
+                              ago
     
       %footer
         %hr
