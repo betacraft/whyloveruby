@@ -15,12 +15,12 @@ class LettersController < ApplicationController
   end
 
   def show
-    @recent_letters = Letter.limit(5).order(:created_at).includes(:user)
+    @recent_letters = Letter.limit(5).order('created_at DESC').includes(:user)
     @letter = Letter.find(params[:id])
   end
 
   def edit
-    @recent_letters = Letter.limit(5).order(:created_at).includes(:user)
+    @recent_letters = Letter.limit(5).order('created_at DESC').includes(:user)
     @letter = current_user.letters.find(params[:id])
   end
 
