@@ -26,23 +26,9 @@ gem "omniauth-twitter", "~> 0.0.8"
 gem "haml-rails", "~> 0.3.4"
 gem "twitter-bootstrap-rails", "~> 2.0.3"
 gem "redcarpet", "~> 1.17.2"
-gem "will_paginate", "~> 3.0.3"
 gem "nokogiri", "~> 1.5.2"
 gem "pygmentize", "~> 0.0.3"
 gem "exception_notification", "~> 2.5.2"
- gem 'newrelic_rpm'
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the web server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
+gem 'newrelic_rpm'
+gem "activeadmin", "~> 0.4.3"
+gem "meta_search",    '>= 1.1.0.pre'
