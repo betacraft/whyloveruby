@@ -60,10 +60,12 @@ module Myloveruby
     config.assets.initialize_on_precompile = false
 
     # exception notification - 
-    Myloveruby::Application.config.middleware.use ExceptionNotifier,
-        :email_prefix => "[My Love Ruby] ",
-        :sender_address => %{"notifier" <notifier@example.com>},
-        :exception_recipients => %w{rtdp@rainingclouds.com}
+    if Rails.env.production?
+      Myloveruby::Application.config.middleware.use ExceptionNotifier,
+          :email_prefix => "[My Love Ruby] ",
+          :sender_address => %{"notifier" <notifier@example.com>},
+          :exception_recipients => %w{rtdp@rainingclouds.com}
+    end
 
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
