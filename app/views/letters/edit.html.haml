@@ -4,5 +4,5 @@
     = form_for @letter do |f|
       = f.text_area :description, class: 'reasonText'
       .markTest.pull-left
-        *Markdown supported.
-      = f.submit 'Submit', class: 'btn primary pull-right'
+        = link_to "Markdown supported", "http://daringfireball.net/projects/markdown/"
+      = f.submit 'Update', class: 'btn primary pull-right'
