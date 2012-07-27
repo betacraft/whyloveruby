@@ -4,7 +4,7 @@
     = form_for @letter do |f|
       = f.text_area :description, class: 'reasonText'
       .markTest.pull-left
-        *Markdown supported.
+        = link_to "Markdown supported", "http://daringfireball.net/projects/markdown/"
       - if user_signed_in?
         = f.submit 'Submit', class: 'btn primary pull-right'
       -else
@@ -45,4 +45,3 @@
               = link_to "Edit", edit_letter_path(letter)
         %hr
     = paginate @letters
-          
