@@ -2,4 +2,10 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  flash:
+    error_signing_in:  "Error signin in !"
+    successful_sign_in:  "Successfully signed in with Twitter"
+    error_saving_letter:  "Oopss !! Error. Please try again."
+    error_updating_letter:  'Oopss !! Error. Please try again.'
+    saved_letter_successfully: "Saved successfully !" 
+    updated_letter_successfully:  'Updated Successfully !!'
