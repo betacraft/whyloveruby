@@ -42,5 +42,4 @@ class LettersController < ApplicationController
       render :json => { success: false, message: 'Error saving like ..' }
     end
   end
-
 end
