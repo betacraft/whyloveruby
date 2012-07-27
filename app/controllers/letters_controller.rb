@@ -6,10 +6,10 @@ class LettersController < ApplicationController
   def create
     @letter = current_user.letters.new(params[:letter])
     if @letter.save
-      flash[:notice] = 'Saved successfully !!'
+      flash[:notice] = t('flash.saved_letter_successfully')
       redirect_to letter_path(@letter)
     else
-      flash[:error] = 'Oopss !! Error. Please try again.'
+      flash[:error] = t('flash.error_saving_letter')
       redirect_to root_path
     end
   end
@@ -27,9 +27,9 @@ class LettersController < ApplicationController
   def update
     @letter = current_user.letters.find(params[:id])
     if @letter.update_attributes(params[:letter])
-      flash[:notice] = 'Updated Successfully !!'
+      flash[:notice] = t('flash.updated_letter_successfully')
     else
-      flash[:error] = 'Oopss !! Error. Please try again.'
+      flash[:error] = t('flash.error_updating_letter')
     end
     redirect_to letter_path(@letter)
   end
