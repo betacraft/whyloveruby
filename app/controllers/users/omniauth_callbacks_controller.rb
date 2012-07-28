@@ -1,8 +1,6 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def twitter
-    logger.info request.env["omniauth.auth"].inspect
-    logger.info "*"*100
     # You need to implement the method below in your model
     @user = User.find_for_twitter_oauth(request.env["omniauth.auth"])
     
@@ -14,6 +12,5 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       flash[:error] = t('flash.error_signing_in')
       redirect_to root_path
     end
-  end
-    
+  end    
 end
