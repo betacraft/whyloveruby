@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.1'
+gem 'rails', '3.2.6'
 
 gem 'pg', group: 'production'
 gem 'mysql2', group: 'development'
