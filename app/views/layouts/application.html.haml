@@ -54,6 +54,9 @@
               %li=# link_to "Link 2", "/path2"
               %li=# link_to "Link 3", "/path3"
               
+    %div{:style => "position:absolute; top:0; right:0;z-index:1040"}
+      = link_to 'https://github.com/rtdp/myloveruby', target: '_blank' do
+        %img{:alt => "Beta Version", :border => "0", :src => "/assets/forkme_right_red.png"}
 
     .container
       .row
