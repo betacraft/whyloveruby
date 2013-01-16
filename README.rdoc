@@ -1,13 +1,9 @@
 Checkout the site at -  http://myloveruby.herokuapp.com
 
-Its an attempt to collect ideas and love for ruby. I hope this will give a real good insights to ruby, as well as few will get very good pointers to defend ruby while fighting friends of some other language.
+It's an attempt to collect ideas and love for ruby. I hope this would give some real good insights to ruby, as well as some people will get very good pointers to defend ruby while fighting others supporting other languages.
 
-If you have some idea, suggestion or anything, do post it or submit pull request. Create a issue and discuss features before pull requests :-)
+If you have some idea, suggestion or anything, do post it or submit a pull request. Create an issue and discuss features before pull requests :-)
 
-Do checkout few awesome current reasons on this site, as well as do post your own resons !
+Do checkout few awesome current reasons on this site, as well as do post your own reasons !
 
 Cheers !!
-
-
-
-
