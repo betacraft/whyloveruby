@@ -32,3 +32,4 @@ gem "exception_notification", "~> 2.5.2"
 gem 'newrelic_rpm'
 gem "activeadmin", "~> 0.4.3"
 gem "meta_search",    '>= 1.1.0.pre'
+gem "therubyracer", "~> 0.11.2"
