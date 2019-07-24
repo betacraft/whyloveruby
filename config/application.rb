@@ -1,10 +1,11 @@
-require File.expand_path('../boot', __FILE__)
+#require File.expand_path('../boot', __FILE__)
+require_relative 'boot'
 
 require 'rails/all'
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
-  Bundler.require(*Rails.groups(:assets => %w(development test)))
+  Bundler.require(*Rails.groups)
   # If you want your assets lazily compiled in production, use this line
   # Bundler.require(:default, :assets, Rails.env)
 end
@@ -60,12 +61,12 @@ module Myloveruby
     config.assets.initialize_on_precompile = false
 
     # exception notification - 
-    if Rails.env.production?
-      Myloveruby::Application.config.middleware.use ExceptionNotifier,
-          :email_prefix => "[My Love Ruby] ",
-          :sender_address => %{"notifier" <notifier@example.com>},
-          :exception_recipients => %w{rtdp@rainingclouds.com}
-    end
+    # if Rails.env.production?
+    #   Myloveruby::Application.config.middleware.use ExceptionNotifier,
+    #       :email_prefix => "[My Love Ruby] ",
+    #       :sender_address => %{"notifier" <notifier@example.com>},
+    #       :exception_recipients => %w{rtdp@rainingclouds.com}
+    # end
 
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {

@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :registerable, :rememberable, :trackable, :omniauthable, :database_authenticatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :remember_me, :name, :twitter_handle, :twitter_description, :twitter_description, :twitter_oauth, :website, :image
+  # attr_accessible :remember_me, :name, :twitter_handle, :twitter_description, :twitter_description, :twitter_oauth, :website, :image
 
   has_many :letters
   has_many :likes
