@@ -13,7 +13,7 @@
       column :likes do |user|
         user.likes.count
       end
-      default_actions
+      actions
     end
 
   end

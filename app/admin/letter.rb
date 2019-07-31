@@ -12,7 +12,7 @@ ActiveAdmin.register Letter do
       l.likes.count
     end
     column :created_at
-    default_actions
+    actions
   end
 
 end
