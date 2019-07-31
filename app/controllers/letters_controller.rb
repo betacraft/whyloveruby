@@ -1,7 +1,7 @@
 class LettersController < ApplicationController
 
   respond_to :html
-  before_filter :authenticate_user!, :except => [:show]
+  before_action :authenticate_user!, :except => [:show]
 
   def create
     @letter = current_user.letters.new(params[:letter])
