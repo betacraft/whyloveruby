@@ -27,6 +27,7 @@ gem 'uglifier', '>= 1.0.3'
 gem 'byebug', '~>11.0.1'
 gem 'puma', '~> 4.0.1'
 gem 'twitter', '~> 6.2.0'
+gem 'sentry-raven', '~> 2.11'
 #gem 'jquery-rails'
 gem "devise", "~> 4.6.2"
 gem "omniauth", "~>1.9.0"
