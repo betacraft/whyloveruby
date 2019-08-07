@@ -1,9 +1,9 @@
-@import "twitter/bootstrap/bootstrap";
+//@import "twitter/bootstrap";
 //@import "twitter/bootstrap/responsive";
 
 // Set the correct sprite paths
-@iconSpritePath: asset-path('twitter/bootstrap/glyphicons-halflings.png');
-@iconWhiteSpritePath: asset-path('twitter/bootstrap/glyphicons-halflings-white.png');
+$iconSpritePath: asset-path('twitter/bootstrap/glyphicons-halflings.png');
+$iconWhiteSpritePath: asset-path('twitter/bootstrap/glyphicons-halflings-white.png');
 
 // Your custom LESS stylesheets goes here
 //
@@ -14,15 +14,15 @@
 // See http://twitter.github.com/bootstrap/less.html for their names and documentation
 //
 // Example:
-// @linkColor: #ff0000;
+// $linkColor: #ff0000;
 
-//@gridColumns = 10;
+//$gridColumns = 10;
 
 .auto{
-	margin:auto;
-	float:none !important;
+  margin:auto;
+  float:none !important;
 }
 
 .modifiedContainer{
-	width:970px;
+  width:970px;
 }
