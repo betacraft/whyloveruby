@@ -18,3 +18,5 @@ config/database.yml
 .rvmrc
 .idea
 .env
+.generators
+.byebug_history

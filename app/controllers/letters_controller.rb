@@ -4,7 +4,7 @@ class LettersController < ApplicationController
   before_action :authenticate_user!, :except => [:show]
 
   def create
-    @letter = current_user.letters.new(params[:letter])
+    @letter = current_user.letters.new(letter_params)
     if @letter.save
       flash[:notice] = t('flash.saved_letter_successfully')
       redirect_to letter_path(@letter)
@@ -41,5 +41,11 @@ class LettersController < ApplicationController
     else
       render :json => { success: false, message: 'Error saving like ..' }
     end
+  end
+
+  private
+
+  def letter_params
+    params.require(:letter).permit(:description)
   end
 end
