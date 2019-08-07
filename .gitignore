@@ -17,3 +17,6 @@ config/database.yml
 *.swp
 .rvmrc
 .idea
+.env
+.generators
+.byebug_history

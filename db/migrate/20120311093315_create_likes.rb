@@ -1,4 +1,4 @@
-class CreateLikes < ActiveRecord::Migration
+class CreateLikes < ActiveRecord::Migration[5.2]
   def change
     create_table :likes do |t|
       t.references :user
@@ -6,7 +6,5 @@ class CreateLikes < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :likes, :user_id
-    add_index :likes, :letter_id
   end
 end

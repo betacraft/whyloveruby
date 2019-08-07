@@ -1,4 +1,4 @@
-Myloveruby::Application.routes.draw do
+Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -13,7 +13,7 @@ Myloveruby::Application.routes.draw do
     end
   end
 
-  root to: 'home#index'
+  root 'home#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

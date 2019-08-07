@@ -49,7 +49,7 @@
                     |
                     = link_to "Logout", destroy_user_session_path, method: 'delete'
               - else  
-                %li= link_to 'Login with Twitter' , user_omniauth_authorize_path(:twitter)
+                %li= link_to 'Login with Twitter' , user_twitter_omniauth_authorize_path
               %li=# link_to "Link 1", "/path1"
               %li=# link_to "Link 2", "/path2"
               %li=# link_to "Link 3", "/path3"

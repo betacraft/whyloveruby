@@ -2,6 +2,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def twitter
     # You need to implement the method below in your model
+
     @user = User.find_for_twitter_oauth(request.env["omniauth.auth"])
     
     if @user.persisted?
@@ -12,5 +13,5 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       flash[:error] = t('flash.error_signing_in')
       redirect_to root_path
     end
-  end    
+  end
 end

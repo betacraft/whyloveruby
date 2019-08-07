@@ -1,4 +1,4 @@
-class ChangeLetterDescriptionColumnType < ActiveRecord::Migration
+class ChangeLetterDescriptionColumnType < ActiveRecord::Migration[5.2]
   def up
     change_column :letters, :description, :text
   end
