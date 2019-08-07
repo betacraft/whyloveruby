@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :registerable, :rememberable, :trackable, :omniauthable, :database_authenticatable
+  devise :registerable, :rememberable, :trackable, :database_authenticatable, :omniauthable,
+         omniauth_providers: [:twitter]
 
   # Setup accessible (or protected) attributes for your model
   # attr_accessible :remember_me, :name, :twitter_handle, :twitter_description, :twitter_description, :twitter_oauth, :website, :image
@@ -11,12 +12,14 @@ class User < ActiveRecord::Base
 
   class << self
     def find_for_twitter_oauth(auth)
-      user = User.find_by_twitter_oauth(auth["credentials"]["token"])
+      user = User.where(uid: auth.uid, provider: auth.provider).first
 
       if user
         user
       else
         User.create(
+          uid: auth["uid"],
+          provider: auth["provider"],
           name: auth["info"]["name"],
           twitter_handle: auth["info"]["nickname"],
           twitter_description: auth["info"]["description"],
