@@ -9,7 +9,7 @@ class LettersController < ApplicationController
       flash[:notice] = t('flash.saved_letter_successfully')
       redirect_to letter_path(@letter)
     else
-      flash[:error] = t('flash.error_saving_letter')
+      flash[:error] = 'Letter description cannot be empty. Try Again!'
       redirect_to root_path
     end
   end
@@ -29,7 +29,7 @@ class LettersController < ApplicationController
     if @letter.update_attributes(params[:letter])
       flash[:notice] = t('flash.updated_letter_successfully')
     else
-      flash[:error] = t('flash.error_updating_letter')
+      flash[:error] = 'Letter description cannot be empty. Try Again!'
     end
     redirect_to letter_path(@letter)
   end
