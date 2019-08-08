@@ -9,7 +9,7 @@ class LettersController < ApplicationController
       flash[:notice] = t('flash.saved_letter_successfully')
       redirect_to letter_path(@letter)
     else
-      flash[:error] = t('flash.error_saving_letter')
+      flash[:error] = 'Letter description cannot be empty. Try Again!'
       redirect_to root_path
     end
   end
@@ -26,10 +26,10 @@ class LettersController < ApplicationController
 
   def update
     @letter = current_user.letters.find(params[:id])
-    if @letter.update_attributes(params[:letter])
+    if @letter.update_attributes(letter_params)
       flash[:notice] = t('flash.updated_letter_successfully')
     else
-      flash[:error] = t('flash.error_updating_letter')
+      flash[:error] = 'Letter description cannot be empty. Try Again!'
     end
     redirect_to letter_path(@letter)
   end
@@ -41,6 +41,14 @@ class LettersController < ApplicationController
     else
       render :json => { success: false, message: 'Error saving like ..' }
     end
+  end
+
+  def destroy
+    letter = current_user.letters.find(params[:id])
+    letter.destroy!
+    flash[:notice] = "Letter has been successfully deleted"
+
+    redirect_to root_path
   end
 
   private
