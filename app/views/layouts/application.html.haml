@@ -31,7 +31,7 @@
 
 
   %body
-    .navbar.navbar-fixed-top
+    .navbar.navbar-fixed-top.navbar-inverse
       .navbar-inner
         .container
           %a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
@@ -74,7 +74,7 @@
           .span8
             = yield
           .span1 &nbsp;
-          .span4
+          .span4{ style: 'margin-top:30px;' }
             .well.sidebar-nav.extra-top-margin
               %h3 What it's about - 
               %p
