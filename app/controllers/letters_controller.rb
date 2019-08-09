@@ -26,7 +26,7 @@ class LettersController < ApplicationController
 
   def update
     @letter = current_user.letters.find(params[:id])
-    if @letter.update_attributes(params[:letter])
+    if @letter.update_attributes(letter_params)
       flash[:notice] = t('flash.updated_letter_successfully')
     else
       flash[:error] = 'Letter description cannot be empty. Try Again!'
@@ -41,6 +41,14 @@ class LettersController < ApplicationController
     else
       render :json => { success: false, message: 'Error saving like ..' }
     end
+  end
+
+  def destroy
+    letter = current_user.letters.find(params[:id])
+    letter.destroy!
+    flash[:notice] = "Letter has been successfully deleted"
+
+    redirect_to root_path
   end
 
   private
