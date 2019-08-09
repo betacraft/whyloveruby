@@ -5,11 +5,11 @@
     %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}/
     %meta{:content => "I love Ruby, because.. ", :property => "og:title"}/
     %meta{:content => "product", :property => "og:type"}/
-    %meta{:content => "http://myloveruby.herokuapp.com", :property => "og:url"}/
-    %meta{:content => "http://myloveruby.herokuapp.com/assets/my_love_ruby.png", :property => "og:image"}/
+    %meta{:content => "https://whyloveruby.herokuapp.com", :property => "og:url"}/
+    %meta{:content => "https://whyloveruby.herokuapp.com/my_love_ruby.png", :property => "og:image"}/
     %meta{:content => "Post in here, one reason, why you love Ruby.", :property => "og:description"}/
-    %meta{:content => "My Love Ruby", :property => "og:site_name"}/
-    %meta{:content => "My Love Ruby", :itemprop => "name"}
+    %meta{:content => "Why Love Ruby", :property => "og:site_name"}/
+    %meta{:content => "Why Love Ruby", :itemprop => "name"}
 
     %title= "I Love Ruby because .."
     = csrf_meta_tags
@@ -23,7 +23,7 @@
       }
     = stylesheet_link_tag "application", :media => "all"
     / Le fav and touch icons
-    %link{:href => "/favicon.ico", :rel => "shortcut icon"}/
+    %link{:href => "/ruby-vector-logo.png", :rel => "shortcut icon"}/
     -#%link{:href => "images/apple-touch-icon.png", :rel => "apple-touch-icon"}/
     -#%link{:href => "images/apple-touch-icon-72x72.png", :rel => "apple-touch-icon", :sizes => "72x72"}/
     -#%link{:href => "images/apple-touch-icon-114x114.png", :rel => "apple-touch-icon", :sizes => "114x114"}/
@@ -38,7 +38,7 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          %a.brand{:href => "/"}My Love Ruby
+          %a.brand{:href => "/"}Why Love Ruby
           .container.nav-collapse
             %ul.nav.pull-right
               - if user_signed_in?
@@ -105,9 +105,9 @@
                     %tr
                       %td
                         .thumbnail.pull-left
-                          = image_tag l.user.image, style: 'width:24px;'
+                          = image_tag l.user.image, style: 'width:30px;'
                         .info.pull-left  
-                          = "#{l.user.name} (#{l.user.twitter_handle})"
+                          = truncate("#{l.user.name} (#{l.user.twitter_handle})", length: 27)
                           %br
                           %small.timeAgo
                             = link_to letter_path(l) do 
