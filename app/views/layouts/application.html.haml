@@ -23,11 +23,11 @@
       }
     = stylesheet_link_tag "application", :media => "all"
     / Le fav and touch icons
-    %link{:href => "images/favicon.ico", :rel => "shortcut icon"}/
-    %link{:href => "images/apple-touch-icon.png", :rel => "apple-touch-icon"}/
-    %link{:href => "images/apple-touch-icon-72x72.png", :rel => "apple-touch-icon", :sizes => "72x72"}/
-    %link{:href => "images/apple-touch-icon-114x114.png", :rel => "apple-touch-icon", :sizes => "114x114"}/
-    %link{:href => "http://fonts.googleapis.com/css?family=Sancreek", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/favicon.ico", :rel => "shortcut icon"}/
+    -#%link{:href => "images/apple-touch-icon.png", :rel => "apple-touch-icon"}/
+    -#%link{:href => "images/apple-touch-icon-72x72.png", :rel => "apple-touch-icon", :sizes => "72x72"}/
+    -#%link{:href => "images/apple-touch-icon-114x114.png", :rel => "apple-touch-icon", :sizes => "114x114"}/
+    %link{:href => "https://fonts.googleapis.com/css?family=Sancreek", :rel => "stylesheet", :type => "text/css"}/
 
 
   %body
@@ -56,7 +56,7 @@
               
     %div{:style => "position:absolute; top:0; right:0;z-index:1040"}
       = link_to 'https://github.com/rtdp/myloveruby', target: '_blank' do
-        %img{:alt => "Beta Version", :border => "0", :src => "/assets/forkme_right_red.png"}
+        %img{:alt => "Beta Version", :border => "0", :src => "/forkme_right_red.png"}
 
     .container
       .row
