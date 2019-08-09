@@ -15,33 +15,53 @@
   .span8
     .letters
       - @letters.each do |letter|    
-        %ul.breadcrumb.letters
+        %ul.breadcrumb.letters{ style: "display: flex; padding: 20px" }
           %li
-            .voteCount.span2.pull-left
+            .voteCount.pull-left
               %div{class: "countNumber #{letter.id}"}
                 = letter.likes.count
               - if user_signed_in?  
                 = link_to 'UpVote', '#', class: "btn likeButton #{letter.like_by?(current_user) ? 'disabled' : ''}", data: {url: like_letter_path(letter)}
               - else
                 = link_to 'UpVote', '#', class: 'btn', rel: 'popover', data: {content: "You need to login first to Like it. ", title: 'Oops !!'}
+
             .personalInfo.pull-right
-              %ul.thumbnails.pull-right
-                .span1.thumbnail{style:'height:48px; width:48px;'}
-                  = image_tag letter.user.image
-              .span4.pull-right.names
+              .pull-right.names
                 = letter.user.name
                 %br  
                 %strong
-                  @
-                  =letter.user.twitter_handle
-        .letterDescription          
-          = markdown(letter.description)
+                  %a{ href: "https:www.twitter.com/#{letter.user.twitter_handle}", target: "_blank" }
+                    = "@#{letter.user.twitter_handle}"
+                %br
+                %small.timeAgo
+                  = link_to letter_path(letter) do
+                    = time_ago_in_words letter.created_at
+                    ago
+              .pull-right.thumbnail.imageWrapper
+                = image_tag letter.user.image
+        -#          TODO refactor this
+        - unless letter.user_id == 43
+          .letterDescription
+            = markdown(letter.description)
+        - else
+          .letterDescription43
+            = markdown(letter.description)
         %br
-        .letterActions.pull-right
-          = link_to "More", letter_path(letter)
-          - if user_signed_in?
-            - if(current_user.id.to_i == letter.user_id.to_i)
-              |
-              = link_to "Edit", edit_letter_path(letter)
+        %div
+          %div.pull-left
+            %a.twitter-share-button{"data-size": "large", "data-hashtags": "whyloveruby", "data-url": "#{letter_url(letter)}",
+                 href: "https://twitter.com/share", class: 'pull-right',
+                 "data-text": "@#{letter.user.twitter_handle} tells the reason why they love Ruby.\n Visit the below link to know!\n"}
+
+          .clr
+          :javascript
+                   !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+          .letterActions.pull-right
+            = link_to "More", letter_path(letter), class: 'btn-link'
+            - if user_signed_in?
+              - if(current_user.id.to_i == letter.user_id.to_i)
+                |
+                = link_to "Edit", edit_letter_path(letter)
+        %br
         %hr
     = paginate @letters
