@@ -15,4 +15,10 @@ namespace :modify_user_data do
       user.save!
     end
   end
+
+
+  desc "Update user profile image URI scheme from \'http\' to \'https\'"
+  task update_user_image_url_scheme_to_https: :environment do
+    User.find_each { |user| user.update! image: user.image.gsub('http://', 'https://') }
+  end
 end
