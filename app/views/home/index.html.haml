@@ -49,9 +49,9 @@
         %br
         %div
           %div.pull-left
-            %a.twitter-share-button{"data-size": "large", "data-hashtags": "whyloveruby", "data-url": "#{letter_url(letter)}",
+            %a.twitter-share-button{"data-size": "large", "data-hashtags": "whyloveruby",
                  href: "https://twitter.com/share", class: 'pull-right',
-                 "data-text": "@#{letter.user.twitter_handle} tells the reason why they love Ruby.\n Visit the below link to know!\n"}
+                 "data-text": "Here is @#{letter.user.twitter_handle}\'s reason to love Ruby. -  #{letter_url(letter)}\n Tell us yours at"}
 
           .clr
           :javascript
