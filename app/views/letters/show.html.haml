@@ -7,9 +7,9 @@
             %div{class: "countNumber #{@letter.id}"}
               = @letter.likes.count
             - if user_signed_in?  
-              = link_to 'VoteUp', '#', class: "btn likeButton #{@letter.like_by?(current_user) ? 'disabled' : ''}", data: {url: like_letter_path(@letter)}
+              = link_to 'UpVote', '#', class: "btn likeButton #{@letter.like_by?(current_user) ? 'disabled' : ''}", data: {url: like_letter_path(@letter)}
             - else
-              = link_to 'VoteUp', '#', class: 'btn', rel: 'popover', data: {content: "You need to login first to Like it. ", title: 'Oops !!'}
+              = link_to 'UpVote', '#', class: 'btn', rel: 'popover', data: {content: "You need to login first to Like it. ", title: 'Oops !!'}
           .personalInfo.pull-right
             .pull-right.names
               = @letter.user.name
@@ -28,9 +28,9 @@
       %br
       %div
         %div.pull-left
-          %a.twitter-share-button{"data-size": "large", "data-hashtags": "whyloveruby", "data-url": "#{letter_url(@letter)}",
+          %a.twitter-share-button{"data-size": "large", "data-hashtags": "whyloveruby", "data-url": "#{root_url}",
                  href: "https://twitter.com/share", class: 'pull-right',
-                 "data-text": "@#{@letter.user.twitter_handle} tells the reason why they love Ruby.\n Visit the below link to know!\n"}
+                 "data-text": "Here is @#{@letter.user.twitter_handle}\'s reason to love Ruby. -  #{letter_url(@letter)}\n Tell us yours at" }
         .clr
         :javascript
                  !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
