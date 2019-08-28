@@ -1,4 +1,4 @@
-Checkout the site at -  http://myloveruby.herokuapp.com
+Checkout the site at -  https://www.whyloveruby.com
 
 It's an attempt to collect ideas and love for ruby. I hope this would give some real good insights to ruby, as well as some people will get very good pointers to defend ruby while fighting others supporting other languages.
 
