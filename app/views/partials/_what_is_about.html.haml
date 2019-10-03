@@ -1,20 +1,20 @@
-.well.sidebar-nav.extra-top-margin
-	%h3 What it's about -
-	%p
-		I really love ruby language, and so do many folks using it. So, this is an attempt to collect reasons for that from everybody. Knowing what ticks for others in language, can be a good learning exercise.
-	%p
-		So, just put in here -
-		%ul
-			%li
-				The first thing, that comes to your mind about awesomeness of Ruby.
-			%li
-				Thing, of which you feel relived, when you think of coding Ruby than any other language.
-			%li
-				Or just imagine yourself writing a love letter to Ruby, with her best qualities, and write a one here.
-	%p
-		.socialShares
-			%a.twitter-share-button{"data-via" => "rtdp", :href => "https://twitter.com/share", class: 'pull-right', "data-text" => "Checkout and tell - 'I love ruby because ...'"} Tweet
-		%br
-		.clr
-		:javascript
-				 !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+.card.mb-4
+	%h3.card-header What it's about -
+	.card-body
+		%p.card-text
+			I really love ruby language, and so do many folks using it. So, this is an attempt to collect reasons for that from everybody. Knowing what ticks for others in language, can be a good learning exercise.
+		%p.card-text
+			So, just put in here -
+		%p.card-text
+			%ul.list-group.list-group-flush
+				%li.list-group-item
+					The first thing, that comes to your mind about awesomeness of Ruby.
+				%li.list-group-item
+					Thing, of which you feel relived, when you think of coding Ruby than any other language.
+				%li.list-group-item
+					Or just imagine yourself writing a love letter to Ruby, with her best qualities, and write a one here.
+		%p.card-text.my-2.text-right
+			%a.twitter-share-button{"data-via" => "rtdp", :href => "https://twitter.com/share", class: 'pull-right', "data-size" => "large", "data-text" => "Checkout and tell - 'I love ruby because ...'"} Tweet
+			.clr
+			:javascript
+					 !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
