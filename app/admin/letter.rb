@@ -1,6 +1,6 @@
 ActiveAdmin.register Letter do
 
-  index do 
+  index do
     column :id
     column :description do |l|
       l.description.truncate(200)
