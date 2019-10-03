@@ -30,9 +30,12 @@
     = render "partials/flash"
 
     .content.container
-      = yield
-      = render "partials/what_is_about"
-      = render "partials/recently_submitted"
+      .row
+        .col-12.col-md-8
+          = yield
+        .col-12.col-md-4
+          = render "partials/what_is_about"
+          = render "partials/recently_submitted"
     = render "partials/footer"
     /
       Le javascript
