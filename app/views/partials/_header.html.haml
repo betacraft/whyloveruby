@@ -1,0 +1,26 @@
+%header.header
+  .navbar.navbar-expand-md.navbar-dark.bg-dark
+    .container
+      %a.navbar-brand{ href: "/" }Why Love Ruby
+      %button.navbar-toggler{ type: "button",
+                           "data-toggle": "collapse",
+                           "data-target": "#navbar-content",
+                           "aria-controls": "navbar-content",
+                           "aria-expanded": false,
+                           "aria-label": "Toggle navigation" }
+        %span.navbar-toggler-icon
+      #navbar-content.collapse.navbar-collapse.justify-content-md-end
+        %ul.navbar-nav
+          - if user_signed_in?
+            %li.nav-item
+              %span.welcome
+                Welcome,
+                = current_user.twitter_handle
+                |
+                = link_to "Logout", destroy_user_session_path, method: "delete", class: "nav-link"
+          - else  
+            %li.nav-item= link_to 'Login with Twitter' , user_twitter_omniauth_authorize_path, class: "nav-link"
+
+  .forkme-ribbon
+    = link_to 'https://github.com/rtdp/myloveruby', target: '_blank' do
+      %img{:alt => "Beta Version", :border => "0", :src => "/forkme_right_red.png"}

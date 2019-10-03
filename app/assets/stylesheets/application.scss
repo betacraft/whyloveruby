@@ -2,5 +2,8 @@
 @import "active_admin";
 @import "bootstrap";
 @import "bootstrap_and_overrides";
+
+// Components
+@import "components/header";
 @import "home";
 @import "letters";
