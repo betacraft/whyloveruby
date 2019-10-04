@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 
   has_many :letters
   has_many :likes
+  validates_presence_of :twitter_handle
 
   class << self
     def find_for_twitter_oauth(auth)
