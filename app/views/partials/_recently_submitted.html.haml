@@ -1,18 +1,17 @@
-.well.sidebar-nav
-	%p
-		%h4
-			Recently submitted by -
-	%table{class: 'recentsTable table table-striped '}
-		- if @recent_letters.present?
-			- @recent_letters.each do |l|
-				%tr
-					%td
-						.thumbnail.float-left
-							= image_tag l.user.image, style: 'width:30px;'
-						.info.float-left
-							= truncate("#{l.user.name} (#{l.user.twitter_handle})", length: 27)
-							%br
-							%small.timeAgo
-								= link_to letter_path(l) do
-									= time_ago_in_words l.created_at
-									ago
+.card
+	%h4.card-header Recently submitted by -
+	.card-body.p-0
+		%table.table{class: 'recentsTable table table-striped '}
+			- if @recent_letters.present?
+				- @recent_letters.each do |l|
+					%tr
+						%td
+							.thumbnail.float-left
+								= image_tag l.user.image, style: 'width:30px;'
+							.info.float-left
+								= truncate("#{l.user.name} (#{l.user.twitter_handle})", length: 27)
+								%br
+								%small.timeAgo
+									= link_to letter_path(l) do
+										= time_ago_in_words l.created_at
+										ago
