@@ -1,0 +1,11 @@
+i {
+  display: inline-block;
+  background-position: center;
+  background-size: contain;
+  height: 20px;
+  width: 20px;
+
+  &.like {
+    background-image: image-url("like-icon.svg");
+  }
+}

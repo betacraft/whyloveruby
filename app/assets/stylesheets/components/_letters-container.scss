@@ -1,0 +1,51 @@
+.letters-container {
+  display: flex;
+  flex-direction: column;
+
+  hr {
+    margin-bottom: 30px;
+    margin-top: 0;
+    width: 100%;
+  }
+
+  .letter {
+    padding: 20px;
+    width: 100%;
+  }
+
+  .letter-info {
+    align-items: center;
+    min-height: 100px;
+  }
+
+  .like-button {
+    @extend .btn;
+    @extend .btn-primary;
+
+    color: white;
+  }
+
+  .amount {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .handle {
+    display: block;
+  }
+
+  .thumbnail {
+    padding: 6px;
+  }
+
+  .letter-content {
+    min-height: 100px;
+    padding: 20px 10px;
+  }
+
+  .actions {
+    align-items: center;
+    display: flex;
+    padding: 10px;
+  }
+}
