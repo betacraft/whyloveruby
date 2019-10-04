@@ -7,9 +7,9 @@
 			- @recent_letters.each do |l|
 				%tr
 					%td
-						.thumbnail.pull-left
+						.thumbnail.float-left
 							= image_tag l.user.image, style: 'width:30px;'
-						.info.pull-left
+						.info.float-left
 							= truncate("#{l.user.name} (#{l.user.twitter_handle})", length: 27)
 							%br
 							%small.timeAgo

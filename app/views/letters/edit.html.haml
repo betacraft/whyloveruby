@@ -3,6 +3,6 @@
     %h3 I Love Ruby Because .. 
     = form_for @letter do |f|
       = f.text_area :description, class: 'reasonText'
-      .markTest.pull-left
+      .markTest.float-left
         = link_to "Markdown supported", "http://daringfireball.net/projects/markdown/"
-      = f.submit 'Update', class: 'btn primary pull-right'
+      = f.submit 'Update', class: 'btn primary float-right'
