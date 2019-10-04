@@ -35,14 +35,17 @@
                   ago
               .thumbnail.col-2
                 = image_tag letter.user.image
-          .letter-content.row= markdown(letter.description)
+          - truncate = letter.description.length > 274
+          .letter-content.row{ class: truncate ? 'overflow' : '' }
+            = markdown(letter.description)
           .actions.row
             .col
               %a.twitter-share-button{"data-size": "large", "data-hashtags": "whyloveruby",
                    href: "https://twitter.com/share", class: 'float-right',
                    "data-text": "Here is @#{letter.user.twitter_handle}\'s reason to love Ruby. -  #{letter_url(letter)}\n Tell us yours at"}
             .col.text-right
-              = link_to "More", letter_path(letter), class: 'btn-link'
+              - if truncate
+                = link_to "More", letter_path(letter), class: 'btn-link'
               - if user_signed_in?
                 - if(current_user.id.to_i == letter.user_id.to_i)
                   |

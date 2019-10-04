@@ -36,11 +36,20 @@
 
   .thumbnail {
     padding: 6px;
+
+    > img {
+      border-radius: 50%;
+    }
   }
 
   .letter-content {
-    min-height: 100px;
+    height: 95px;
     padding: 20px 10px;
+
+    &.overflow {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 
   .actions {
