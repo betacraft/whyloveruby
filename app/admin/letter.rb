@@ -1,5 +1,7 @@
 ActiveAdmin.register Letter do
 
+  permit_params :description
+
   index do
     column :id
     column :description do |l|

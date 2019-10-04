@@ -1,46 +1,34 @@
-.row
-  .span8
-    .letters
-      %ul.breadcrumb.letters{ style: "display: flex; padding: 20px" }
-        %li
-          .voteCount.float-left
-            %div{class: "countNumber #{@letter.id}"}
-              = @letter.likes.count
-            - if user_signed_in?  
-              = link_to 'UpVote', '#', class: "btn likeButton #{@letter.like_by?(current_user) ? 'disabled' : ''}", data: {url: like_letter_path(@letter)}
-            - else
-              = link_to 'UpVote', '#', class: 'btn', rel: 'popover', data: {content: "You need to login first to Like it. ", title: 'Oops !!'}
-          .personalInfo.float-right
-            .float-right.names
-              = @letter.user.name
-              %br
-              %strong
-                %a{ href: "https:www.twitter.com/#{@letter.user.twitter_handle}", target: "_blank" }
-                  = "@#{@letter.user.twitter_handle}"
-              %br
-              %small.timeAgo
-                = link_to letter_path(@letter) do
-                  = time_ago_in_words @letter.created_at
-                  ago
-            .float-right.thumbnail.imageWrapper
-              = image_tag @letter.user.image
-      = markdown(@letter.description)
-      %br
-      %div
-        %div.float-left
-          %a.twitter-share-button{"data-size": "large", "data-hashtags": "whyloveruby", "data-url": "#{root_url}",
-                 href: "https://twitter.com/share", class: 'float-right',
-                 "data-text": "Here is @#{@letter.user.twitter_handle}\'s reason to love Ruby. -  #{letter_url(@letter)}\n Tell us yours at" }
-        .clr
-        :javascript
-                 !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-        .letterActions.float-right
-          - if user_signed_in?
-            - if(current_user.id.to_i == @letter.user_id.to_i)
-              = link_to "Edit", edit_letter_path(@letter)
-              |
-              = link_to "Delete", letter_path(@letter),
-               method: :delete,
-               data: {confirm: "Are you sure?"}
-      %br
-      %hr
+.letter
+  .letter-info.row.bg-light
+    .votes-counter.col-2.text-center
+      %p.amount= @letter.likes.count
+      - if user_signed_in?
+        = link_to '#', class: "like-button", role: "button", data: { url: like_letter_path(letter) } do
+          %i.like
+      - else
+        = link_to '#', class: 'like-button', role: "button", data: { toggle: "popover",  title: "Oops!!", content: "You need to login first to Like it." } do
+          %i.like
+    .profile-info.col-10.row.no-gutters.text-right
+      .data.col-10
+        %p.name= @letter.user.name
+        %a.handle{ href: "https:www.twitter.com/#{@letter.user.twitter_handle}", target: "_blank" }
+          = "@#{@letter.user.twitter_handle}"
+        = link_to letter_path(@letter), html_options: { class: "time-ago" } do
+          = time_ago_in_words @letter.created_at
+          ago
+      .thumbnail.col-2
+        = image_tag @letter.user.image
+  .letter-content.row.complete
+    = markdown(@letter.description)
+  .actions.row
+    .col
+      %a.twitter-share-button{"data-size": "large", "data-hashtags": "whyloveruby",
+           href: "https://twitter.com/share", class: 'float-right',
+           "data-text": "Here is @#{@letter.user.twitter_handle}\'s reason to love Ruby. -  #{letter_url(@letter)}\n Tell us yours at"}
+    .col.text-right
+      - if user_signed_in? && current_user.id.to_i == @letter.user_id.to_i
+        = link_to "Delete", letter_path(@letter),
+         method: :delete,
+         data: {confirm: "Are you sure?"}
+    :javascript
+             !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
