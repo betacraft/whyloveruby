@@ -35,7 +35,7 @@ gem "omniauth-twitter", "~> 1.4.0"
 gem "haml-rails", "~> 2.0.1"
 gem "twitter-bootstrap-rails", "~> 4.0.0"
 gem "redcarpet", "~> 1.17.2"
-gem "nokogiri", "~> 1.10.3"
+gem "nokogiri", "~> 1.10.8"
 gem "pygmentize", "~> 0.0.3"
 #gem "exception_notification", "~> 2.5.2"
 gem 'newrelic_rpm'
