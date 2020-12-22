@@ -5,7 +5,7 @@ require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
-
+require_relative 'support/controller_macros'
 # require database cleaner at the top level
 require 'database_cleaner'
 
@@ -18,6 +18,8 @@ end
 
 RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
+  config.extend ControllerMacros, :type => :controller
+
 end
 
 # Add additional requires below this line. Rails is not loaded until this point!

@@ -9,8 +9,16 @@ RSpec.describe LettersController, type: :controller do
       end
 
       it 'should redirect to login page' do
-        post :create, params: {description: 'Ruby is awesome'}
+        post :create, params: {letter: {description: 'Ruby is awesome'}}
         expect(response).to redirect_to  %r(\Ahttp://test.host/users/sign_in)
+      end
+    end
+
+    context 'with authentication' do
+    login_user
+      it 'should redirect to letter path' do
+        post :create, params: {letter: {description: 'Ruby is awesome'}}
+        expect(response).to redirect_to  letter_path(1)
       end
     end
   end
