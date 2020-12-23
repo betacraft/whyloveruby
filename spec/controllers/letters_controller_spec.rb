@@ -93,6 +93,16 @@ RSpec.describe LettersController, type: :controller do
         expect(response).to redirect_to %r{\Ahttp://test.host/users/sign_in}
       end
     end
+
+    context 'with authentication' do
+      login_user
+      it 'should render json' do
+        letter = Letter.create(description: 'Ruby is awesome')
+        post :like, params: { id: letter.id }
+        expect(JSON.parse(response.body)).to eq({ 'success' => true, 'message' => 'Like saved..',
+                                                  'likes' => letter.likes.count, 'id' => letter.id })
+      end
+    end
   end
 
   describe 'DELETE #destroy' do
