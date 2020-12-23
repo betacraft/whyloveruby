@@ -42,3 +42,13 @@ gem 'newrelic_rpm'
 gem "activeadmin", "~> 2.2.0"
 #gem "meta_search",    '>= 1.1.0.pre'
 #gem "therubyracer", "~> 0.11.2"
+group :development, :test do
+  gem 'rspec-rails'
+end
+
+group :test do
+  gem 'database_cleaner'
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'shoulda-matchers'
+end
