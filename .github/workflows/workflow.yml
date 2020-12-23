@@ -18,21 +18,21 @@ jobs:
           POSTGRES_USER: ${{ env.POSTGRES_USER }}
           POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
     steps:
-      -uses: actions/checkout@v2
-      -uses: actions/setup-ruby@v2
-       with:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-ruby@v1
+        with:
           ruby-version: ${{ env.RUBY_VERSION }}
-      -name: Install PostgreSQL
-       run: sudo apt-get install libpq-dev
-      -name: Install dependencies
-       run: |
+      - name: Install PostgreSQL
+        run: sudo apt-get install libpq-dev
+      - name: Install dependencies
+        run: |
           gem install bundler
           bundle install
-      -name: Setup database
-       run: |
+      - name: Setup database
+        run: |
           bundle exec rails db:create RAILS_ENV=test
           bundle exec rails db:migrate RAILS_ENV=test
-      -name: Run tests
-       run: bundle exec rspec spec
+      - name: Run tests
+        run: bundle exec rspec spec
       
     
