@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
-ruby "2.4.0"
+ruby "2.4.10"
 
-gem 'rails', '5.2.3'
+gem 'rails', '5.2.4.4'
 
 gem 'dotenv-rails', '~> 2.7', '>= 2.7.4'
 gem 'pg'#, group: 'production'
