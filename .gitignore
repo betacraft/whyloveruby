@@ -20,3 +20,4 @@ config/database.yml
 .env
 .generators
 .byebug_history
+coverage
