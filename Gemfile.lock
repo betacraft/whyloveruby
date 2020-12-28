@@ -199,7 +199,7 @@ GEM
     orm_adapter (0.5.0)
     pg (1.2.3)
     public_suffix (4.0.6)
-    puma (4.0.1)
+    puma (4.3.5)
       nio4r (~> 2.0)
     pygmentize (0.0.3)
     rack (2.2.3)
@@ -338,7 +338,7 @@ DEPENDENCIES
   omniauth (~> 1.9.0)
   omniauth-twitter (~> 1.4.0)
   pg
-  puma (~> 4.0.1)
+  puma (~> 4.3.5)
   pygmentize (~> 0.0.3)
   rails (= 5.2.4.4)
   redcarpet (~> 1.17.2)
