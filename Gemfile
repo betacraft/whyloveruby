@@ -29,7 +29,7 @@ gem 'puma', '~> 4.0.1'
 gem 'twitter', '~> 6.2.0'
 gem 'sentry-raven', '~> 2.11'
 #gem 'jquery-rails'
-gem "devise", "~> 4.6.2"
+gem "devise", "~> 4.7.1"
 gem "omniauth", "~>1.9.0"
 gem "omniauth-twitter", "~> 1.4.0"
 gem "haml-rails", "~> 2.0.1"
