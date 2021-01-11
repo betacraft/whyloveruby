@@ -238,7 +238,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    redcarpet (1.17.2)
+    redcarpet (3.5.1)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -346,7 +346,7 @@ DEPENDENCIES
   puma (~> 4.0.1)
   pygmentize (~> 0.0.3)
   rails (= 5.2.4.4)
-  redcarpet (~> 1.17.2)
+  redcarpet (~> 3.5.1)
   rspec-rails
   sentry-raven (~> 2.11)
   shoulda-matchers
