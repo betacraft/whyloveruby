@@ -23,7 +23,7 @@ gem 'listen', '~> 3.1', '>= 3.1.5'
 
 gem 'uglifier', '>= 1.0.3'
 #end
-
+gem 'pry', '~> 0.13.1'
 gem 'byebug', '~>11.0.1'
 gem 'puma', '~> 4.0.1'
 gem 'twitter', '~> 6.2.0'

@@ -3,6 +3,8 @@
     %h3 I Love Ruby Because .. 
     = form_for @letter do |f|
       = f.text_area :description, class: 'reasonText'
+      = f.file_field :image 
+      %br
       .markTest.pull-left
         = link_to "Markdown supported", "http://daringfireball.net/projects/markdown/"
       - if user_signed_in?
@@ -43,9 +45,13 @@
         - unless letter.user_id == 43
           .letterDescription
             = markdown(letter.description)
+            - if letter.image.attached?
+              = image_tag(letter.image)
         - else
           .letterDescription43
             = markdown(letter.description)
+            - if letter.image.attached?
+              = image_tag(letter.image)
         %br
         %div
           %div.pull-left
