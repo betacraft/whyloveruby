@@ -27,6 +27,7 @@
       = markdown(@letter.description)
       - if @letter.image.attached?
         = image_tag (@letter.image) 
+        %br
       %br
       %div
         %div.pull-left

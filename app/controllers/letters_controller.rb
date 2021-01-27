@@ -27,7 +27,7 @@ class LettersController < ApplicationController
 
   def update
     @letter = current_user.letters.find(params[:id])
-    if @letter.update_attributes(letter_params)
+    if @letter.update(letter_params)
       flash[:notice] = t('flash.updated_letter_successfully')
     else
       flash[:error] = 'Letter description cannot be empty. Try Again!'
