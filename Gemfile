@@ -66,7 +66,7 @@ group :development do
   gem 'spring'
 
 end
-
+gem 'simplecov', require: false, group: :test
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.26'
@@ -78,7 +78,7 @@ group :test do
   gem 'faker'
   gem 'shoulda-matchers'
 end
-gem 'simplecov', require: false, group: :test
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
