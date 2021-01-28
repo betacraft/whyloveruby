@@ -6,7 +6,7 @@
           .voteCount.pull-left
             %div{class: "countNumber #{@letter.id}"}
               = @letter.likes.count
-            - if user_signed_in?  
+            - if user_signed_in?
               = link_to 'UpVote', '#', class: "btn likeButton #{@letter.like_by?(current_user) ? 'disabled' : ''}", data: {url: like_letter_path(@letter)}
             - else
               = link_to 'UpVote', '#', class: 'btn', rel: 'popover', data: {content: "You need to login first to Like it. ", title: 'Oops !!'}
@@ -25,9 +25,6 @@
             .pull-right.thumbnail.imageWrapper
               = image_tag @letter.user.image
       = markdown(@letter.description)
-      - if @letter.image.attached?
-        = image_tag (@letter.image) 
-        %br
       %br
       %div
         %div.pull-left

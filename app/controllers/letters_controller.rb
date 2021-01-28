@@ -5,7 +5,6 @@ class LettersController < ApplicationController
 
   def create
     @letter = current_user.letters.new(letter_params)
-    @letter.image.attach(params[:letter][:image])
     if @letter.save
       flash[:notice] = t('flash.saved_letter_successfully')
       redirect_to letter_path(@letter)
