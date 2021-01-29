@@ -35,30 +35,38 @@ RSpec.describe LettersController, type: :controller do
   end
 
   describe 'GET #show' do
+    before(:all) do
+      @letter = create(:letter)
+    end
     context 'without authentication' do
       it 'return http success' do
-        letter = Letter.create(description: 'Ruby is awesome')
-        get :show, params: { id: letter.id }
+
+        get :show, params: { id: @letter.id }
         expect(response.status).to eq(200)
       end
     end
   end
 
   describe 'GET #edit' do
+    before(:all) do
+      @letter = create(:letter)
+    end
     context 'without authentication' do
       it 'should redirect to login page' do
-        letter = Letter.create(description: 'Ruby is awesome')
-        get :edit, params: { id: letter.id }
+        get :edit, params: { id: @letter.id }
         expect(response).to redirect_to %r{\Ahttp://test.host/users/sign_in}
       end
     end
   end
 
   describe 'PATCH #update' do
+    before(:all) do
+      @letter = create(:letter)
+    end
     context 'without authentication' do
       it 'should redirect to login page' do
-        letter = Letter.create(description: 'Ruby is awesome')
-        patch :update, params: { id: letter.id }
+
+        patch :update, params:{ id: @letter.id }
         expect(response).to redirect_to %r{\Ahttp://test.host/users/sign_in}
       end
     end
@@ -86,10 +94,12 @@ RSpec.describe LettersController, type: :controller do
   end
 
   describe 'POST #like' do
+    before(:all) do
+      @letter = create(:letter)
+    end
     context 'without authentication' do
       it 'should redirect to login page' do
-        letter = Letter.create(description: 'Ruby is awesome')
-        post :like, params: { id: letter.id }
+        post :like, params: { id: @letter.id }
         expect(response).to redirect_to %r{\Ahttp://test.host/users/sign_in}
       end
     end
@@ -97,19 +107,20 @@ RSpec.describe LettersController, type: :controller do
     context 'with authentication' do
       login_user
       it 'should render json' do
-        letter = Letter.create(description: 'Ruby is awesome')
-        post :like, params: { id: letter.id }
-        expect(JSON.parse(response.body)).to eq({ 'success' => true, 'message' => 'Like saved..',
-                                                  'likes' => letter.likes.count, 'id' => letter.id })
+        post :like, params: { id: @letter.id }
+        expected = { 'success' => true, 'message' => 'Like saved..','likes' => @letter.likes.count, 'id' => @letter.id }
+        expect(JSON.parse(response.body))== expected
       end
     end
   end
 
   describe 'DELETE #destroy' do
+    before(:all) do
+      @letter = create(:letter)
+    end
     context 'without authentication' do
       it 'should redirect to login page' do
-        letter = Letter.create(description: 'Ruby is awesome')
-        delete :destroy, params: { id: letter.id }
+        delete :destroy, params: { id: @letter.id }
         expect(response).to redirect_to %r{\Ahttp://test.host/users/sign_in}
       end
     end
