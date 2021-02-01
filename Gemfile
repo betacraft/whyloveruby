@@ -8,7 +8,8 @@ gem 'rails', '~> 6.1.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'dotenv-rails', '~> 2.7', '>= 2.7.4'
 gem 'pg'
-
+gem 'trix'
+gem 'shrine'
 gem 'uglifier', '>= 1.0.3'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.4'
@@ -28,7 +29,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.2'
 gem 'pry', '~> 0.13.1'
 
 gem 'twitter', '~> 6.2.0'
