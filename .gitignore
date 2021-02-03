@@ -21,4 +21,5 @@ config/database.yml
 .generators
 .byebug_history
 coverage
-storage/
+/storage/**
+/.vscode

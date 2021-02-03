@@ -29,7 +29,7 @@ gem 'jbuilder', '~> 2.7'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
-gem 'pry', '~> 0.13.1'
+
 
 gem 'twitter', '~> 6.2.0'
 gem 'sentry-raven', '~> 2.11'
@@ -53,6 +53,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
 
+
 end
 
 group :development do
@@ -64,7 +65,7 @@ group :development do
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-
+  gem 'pry', '~> 0.13.1'
 end
 
 group :test do
