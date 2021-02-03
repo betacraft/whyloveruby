@@ -40,7 +40,7 @@ RSpec.describe LettersController, type: :controller do
     end
     context 'without authentication' do
       it 'return http success' do
-
+        binding.pry
         get :show, params: { id: @letter.id }
         expect(response.status).to eq(200)
       end
