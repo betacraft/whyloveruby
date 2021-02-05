@@ -22,3 +22,4 @@ config/database.yml
 .byebug_history
 coverage
 storage/**
+public/uploads/**

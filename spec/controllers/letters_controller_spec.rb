@@ -109,7 +109,7 @@ RSpec.describe LettersController, type: :controller do
       it 'should render json' do
         post :like, params: { id: @letter.id }
         expected = { 'success' => true, 'message' => 'Like saved..','likes' => @letter.likes.count, 'id' => @letter.id }
-        expect(JSON.parse(response.body))== expected
+        expect(JSON.parse(response.body)).to eq(expected)
       end
     end
   end
