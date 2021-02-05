@@ -12,4 +12,5 @@
  *= require bootstrap
  *= require bootstrap_and_overrides
  *= require home
+ *= require trix
 */

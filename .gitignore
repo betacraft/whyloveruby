@@ -21,3 +21,12 @@ config/database.yml
 .generators
 .byebug_history
 coverage
+storage/
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+/public/*
+/storage/*

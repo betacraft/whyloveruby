@@ -1,10 +1,9 @@
 .row
   .span8
-    %h3 I Love Ruby Because .. 
+    %h3 I Love Ruby Because ..
     = form_for @letter do |f|
-      = f.text_area :description, class: 'reasonText'
-      .markTest.pull-left
-        = link_to "Markdown supported", "http://daringfireball.net/projects/markdown/"
+      = f.rich_text_area :description, class: 'reasonText'
+      %br
       - if user_signed_in?
         = f.submit 'Submit', class: 'btn primary pull-right'
       -else
@@ -14,13 +13,13 @@
 .row
   .span8
     .letters
-      - @letters.each do |letter|    
+      - @letters.each do |letter|
         %ul.breadcrumb.letters{ style: "display: flex; padding: 20px" }
           %li
             .voteCount.pull-left
               %div{class: "countNumber #{letter.id}"}
                 = letter.likes.count
-              - if user_signed_in?  
+              - if user_signed_in?
                 = link_to 'UpVote', '#', class: "btn likeButton #{letter.like_by?(current_user) ? 'disabled' : ''}", data: {url: like_letter_path(letter)}
               - else
                 = link_to 'UpVote', '#', class: 'btn', rel: 'popover', data: {content: "You need to login first to Like it. ", title: 'Oops !!'}
@@ -28,7 +27,7 @@
             .personalInfo.pull-right
               .pull-right.names
                 = letter.user.name
-                %br  
+                %br
                 %strong
                   %a{ href: "https://www.twitter.com/#{letter.user.twitter_handle}", target: "_blank" }
                     = "@#{letter.user.twitter_handle}"
@@ -42,10 +41,10 @@
         -#          TODO refactor this
         - unless letter.user_id == 43
           .letterDescription
-            = markdown(letter.description)
+            = letter.description
         - else
           .letterDescription43
-            = markdown(letter.description)
+            = letter.description
         %br
         %div
           %div.pull-left
