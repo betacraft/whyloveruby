@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe "photos/new", type: :view do
+  image= File.open("public/forkme_right_red.png")
   before(:each) do
     assign(:photo, Photo.new(
-      image_data: "MyText"
+      image: image
     ))
   end
 
@@ -12,7 +13,7 @@ RSpec.describe "photos/new", type: :view do
 
     assert_select "form[action=?][method=?]", photos_path, "post" do
 
-      assert_select "textarea[name=?]", "photo[image_data]"
+      assert_select "input[name=?]","photo[image]"
     end
   end
 end
