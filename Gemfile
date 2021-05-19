@@ -25,7 +25,7 @@ gem 'uglifier', '>= 1.0.3'
 #end
 
 gem 'byebug', '~>11.0.1'
-gem 'puma', '~> 4.0.1'
+gem 'puma', '~> 4.3.8'
 gem 'twitter', '~> 6.2.0'
 gem 'sentry-raven', '~> 2.11'
 #gem 'jquery-rails'
