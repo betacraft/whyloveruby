@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/mimemagicrb/mimemagic.git
+  revision: 01f92d86d15d85cfd0f20dabd025dcbd36a8a60f
+  ref: 01f92d86d15d85cfd0f20dabd025dcbd36a8a60f
+  specs:
+    mimemagic (0.3.5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -123,7 +130,7 @@ GEM
     factory_bot_rails (6.1.0)
       factory_bot (~> 6.1.0)
       railties (>= 5.0.0)
-    faker (2.15.1)
+    faker (2.19.0)
       i18n (>= 1.6, < 2)
     faraday (0.17.3)
       multipart-post (>= 1.2, < 3)
@@ -204,7 +211,6 @@ GEM
     memoizable (0.4.2)
       thread_safe (~> 0.3, >= 0.3.1)
     method_source (1.0.0)
-    mimemagic (0.3.5)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.14.3)
@@ -402,10 +408,11 @@ DEPENDENCIES
   devise (~> 4.7.3)
   dotenv-rails (~> 2.7, >= 2.7.4)
   factory_bot_rails
-  faker
+  faker (~> 2.19)
   haml-rails (~> 2.0.1)
   jbuilder (~> 2.7)
   listen (~> 3.3)
+  mimemagic!
   newrelic_rpm
   nokogiri (~> 1.10.10)
   omniauth (~> 1.9.0)
@@ -438,4 +445,4 @@ RUBY VERSION
    ruby 2.6.6p146
 
 BUNDLED WITH
-   2.2.7
+   2.2.27

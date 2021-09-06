@@ -37,7 +37,7 @@
                   = link_to letter_path(letter) do
                     = time_ago_in_words letter.created_at
                     ago
-              .pull-right.thumbnail.imageWrapper
+              .pull-right.thumbnail.imageWrapper{ style: "max-height: 50px; max-width: 50px" }
                 = image_tag letter.user.image
         -#          TODO refactor this
         - unless letter.user_id == 43
