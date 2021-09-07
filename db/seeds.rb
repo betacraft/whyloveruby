@@ -5,3 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+require 'faker'
+
+10.times do
+  User.create(name: Faker::Name.unique.name, image: Faker::LoremFlickr.image)
+end
+
+21.times do
+  Letter.create(user_id: User.pluck(:id).sample, description: Faker::Markdown.headers)
+end
