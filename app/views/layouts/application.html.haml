@@ -104,8 +104,8 @@
                   - @recent_letters.each do |l|
                     %tr
                       %td
-                        .thumbnail.pull-left
-                          = image_tag l.user.image, style: 'width:30px;'
+                        .thumbnail.pull-left{ style: 'max-height: 50px; max-width: 50px' }
+                          = get_twitter_image(l.user.twitter_handle)
                         .info.pull-left  
                           = truncate("#{l.user.name} (#{l.user.twitter_handle})", length: 27)
                           %br
