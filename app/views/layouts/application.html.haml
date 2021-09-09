@@ -105,7 +105,7 @@
                     %tr
                       %td
                         .thumbnail.pull-left{ style: 'max-height: 50px; max-width: 50px' }
-                          = image_tag get_twitter_image(l.user.twitter_handle), onerror: 'this.error=null;this.src="https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png"'
+                          = get_twitter_image(l.user.twitter_handle)
                         .info.pull-left  
                           = truncate("#{l.user.name} (#{l.user.twitter_handle})", length: 27)
                           %br
