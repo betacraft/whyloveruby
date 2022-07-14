@@ -47,6 +47,8 @@
         - else
           .letterDescription43
             = markdown(letter.description)
+        - truncate = letter.description.length > 300
+        .letter-content.row{ class: truncate ? 'overflow' : '' }
         %br
         %div
           %div.pull-left
@@ -58,10 +60,12 @@
           :javascript
                    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
           .letterActions.pull-right
-            = link_to "More", letter_path(letter), class: 'btn-link'
+            - if truncate
+              = link_to "More", letter_path(letter), class: 'btn-link'
+            - if truncate && user_signed_in?
+              |
             - if user_signed_in?
               - if(current_user.id.to_i == letter.user_id.to_i)
-                |
                 = link_to "Edit", edit_letter_path(letter)
         %br
         %hr
