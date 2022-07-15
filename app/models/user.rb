@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
 
   has_many :letters
   has_many :likes
+  validates :twitter_handle, presence: true
+  validates :twitter_handle, uniqueness: true, if: -> { self.twitter_handle.present? }
 
   class << self
     def find_for_twitter_oauth(auth)
