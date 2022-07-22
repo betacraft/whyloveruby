@@ -65,6 +65,11 @@ span.welcome{
   .letterDescription43{
     overflow: hidden;
   }
+  .alingMore{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
 .recentsTable{
