@@ -48,21 +48,17 @@
           .letterDescription43
             = markdown(letter.description)
         %br
-        %div
-          %div.pull-left
-            %a.twitter-share-button{"data-size": "large", "data-hashtags": "whyloveruby",
-                 href: "https://twitter.com/share", class: 'pull-right',
-                 "data-text": "Here is @#{letter.user.twitter_handle}\'s reason to love Ruby. -  #{letter_url(letter)}\n Tell us yours at"}
-
-          .clr
-          :javascript
-                   !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-          .letterActions.pull-right
+        .additionalInfo
+          %a.twitter-share-button{"data-size": "large", "data-hashtags": "whyloveruby",
+                href: "https://twitter.com/share", class: 'pull-right',
+                "data-text": "Here is @#{letter.user.twitter_handle}\'s reason to love Ruby. -  #{letter_url(letter)}\n Tell us yours at"}
+          .letterActions
             = link_to "More", letter_path(letter), class: 'btn-link'
             - if user_signed_in?
               - if(current_user.id.to_i == letter.user_id.to_i)
                 |
                 = link_to "Edit", edit_letter_path(letter)
-        %br
+        :javascript
+          !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
         %hr
     = paginate @letters
