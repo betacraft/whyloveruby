@@ -227,7 +227,7 @@ GEM
     nokogiri (1.12.5-x86_64-linux)
       racc (~> 1.4)
     oauth (0.5.8)
-    omniauth (1.9.1)
+    omniauth (1.9.2)
       hashie (>= 3.4.6)
       rack (>= 1.6.2, < 3)
     omniauth-oauth (1.2.0)
@@ -246,7 +246,7 @@ GEM
       nio4r (~> 2.0)
     pygmentize (0.0.3)
     racc (1.6.0)
-    rack (2.2.3)
+    rack (2.2.4)
     rack-mini-profiler (2.3.3)
       rack (>= 1.2.0)
     rack-proxy (0.7.2)
@@ -422,7 +422,7 @@ DEPENDENCIES
   mimemagic!
   newrelic_rpm
   nokogiri (~> 1.12.5)
-  omniauth (~> 1.9.0)
+  omniauth (~> 1.9.2)
   omniauth-twitter (~> 1.4.0)
   pg
   pry (~> 0.13.1)
