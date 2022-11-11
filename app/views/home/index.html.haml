@@ -5,6 +5,8 @@
       = f.text_area :description, class: 'reasonText'
       .markTest.pull-left
         = link_to "Markdown supported", "http://daringfireball.net/projects/markdown/", target: '_blank'
+        = f.label :image
+        = f.file_field :image
       - if user_signed_in?
         = f.submit 'Submit', class: 'btn primary pull-right'
       -else
@@ -44,6 +46,7 @@
         - unless letter.user_id == 43
           .letterDescription
             = markdown(letter.description)
+            = image_tag letter.image if letter.image.attached?
         - else
           .letterDescription43
             = markdown(letter.description)

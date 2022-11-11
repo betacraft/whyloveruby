@@ -54,6 +54,6 @@ class LettersController < ApplicationController
   private
 
   def letter_params
-    params.require(:letter).permit(:description)
+    params.require(:letter).permit(:description, :image)
   end
 end
