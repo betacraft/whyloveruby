@@ -28,10 +28,10 @@ class LettersController < ApplicationController
     @letter = current_user.letters.find(params[:id])
     if @letter.update(letter_params)
       flash[:notice] = t('flash.updated_letter_successfully')
+      redirect_to letter_path(@letter)
     else
       flash[:error] = 'Letter description cannot be empty. Try Again!'
     end
-    redirect_to letter_path(@letter)
   end
 
   def like
@@ -54,6 +54,6 @@ class LettersController < ApplicationController
   private
 
   def letter_params
-    params.require(:letter).permit(:description, :image)
+    params.require(:letter).permit(:description, :image, :remove_image)
   end
 end
