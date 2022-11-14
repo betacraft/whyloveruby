@@ -25,6 +25,7 @@
             .pull-right.thumbnail.imageWrapper{ style: 'max-height: 50px; max-width: 50px' }
               = get_twitter_image(@letter.user.twitter_handle)
       = markdown(@letter.description)
+      = image_tag @letter.image if @letter.image.attached?
       %br
       %div
         %div.pull-left

@@ -26,8 +26,9 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.2'
 
+gem "active_storage_validations", "0.9.8"
 
 gem 'twitter', '~> 6.2.0'
 gem 'sentry-raven', '~> 2.11'
