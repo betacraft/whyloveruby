@@ -9,7 +9,14 @@ class LettersController < ApplicationController
       flash[:notice] = t('flash.saved_letter_successfully')
       redirect_to letter_path(@letter)
     else
-      flash[:error] = 'Letter description cannot be empty. Try Again!'
+      # flash[:error] = 'Letter description cannot be empty. Try Again!'
+      if @letter.errors.many?
+        flash[:error] = "There are #{view_context.pluralize(@letter.errors.count,"error")}.
+                          #{@letter.errors.full_messages.join("\n")}"
+      else
+        flash[:error] = "There is #{view_context.pluralize(@letter.errors.count,"error")}.
+                        #{@letter.errors.full_messages.join("\n")}"
+      end
       redirect_to root_path
     end
   end
@@ -29,7 +36,14 @@ class LettersController < ApplicationController
     if @letter.update(letter_params)
       flash[:notice] = t('flash.updated_letter_successfully')
     else
-      flash[:error] = 'Letter description cannot be empty. Try Again!'
+      # flash[:error] = 'Letter description cannot be empty. Try Again!'
+      if @letter.errors.many?
+        flash[:error] = "There are #{view_context.pluralize(@letter.errors.count,"error")}.
+                          #{@letter.errors.full_messages.join("\n")}"
+      else
+        flash[:error] = "There is #{view_context.pluralize(@letter.errors.count,"error")}.
+                        #{@letter.errors.full_messages.join("\n")}"
+      end
     end
     redirect_to letter_path(@letter)
   end
