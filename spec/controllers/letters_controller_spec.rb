@@ -5,7 +5,7 @@ RSpec.describe LettersController, type: :controller do
   describe 'POST #create' do
     context 'without authentication' do
       it 'should redirect to login page' do
-        post :create, params
+        post :create, **params
         expect(response).to redirect_to %r{\Ahttp://test.host/users/sign_in}
       end
     end
@@ -13,12 +13,12 @@ RSpec.describe LettersController, type: :controller do
     context 'with authentication' do
       login_user
       it 'should redirect to letter path after save' do
-        post :create, params
+        post :create, **params
         expect(response).to redirect_to letter_path(1)
       end
 
       it 'should render success flash after save' do
-        post :create, params
+        post :create, **params
         expect(flash[:notice]).to eq 'Saved successfully !'
       end
 
