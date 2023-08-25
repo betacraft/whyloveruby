@@ -28,6 +28,8 @@
     -#%link{:href => "images/apple-touch-icon-72x72.png", :rel => "apple-touch-icon", :sizes => "72x72"}/
     -#%link{:href => "images/apple-touch-icon-114x114.png", :rel => "apple-touch-icon", :sizes => "114x114"}/
     %link{:href => "https://fonts.googleapis.com/css?family=Sancreek", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css", :rel => "stylesheet"}/
+    %script{:src => "//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"}
 
 
   %body
@@ -48,12 +50,12 @@
                     = current_user.twitter_handle
                     |
                     = link_to "Logout", destroy_user_session_path, method: 'delete'
-              - else  
+              - else
                 %li= link_to 'Login with Twitter' , user_twitter_omniauth_authorize_path
               %li=# link_to "Link 1", "/path1"
               %li=# link_to "Link 2", "/path2"
               %li=# link_to "Link 3", "/path3"
-              
+
     %div{:style => "position:absolute; top:0; right:0;z-index:1040"}
       = link_to 'https://github.com/rtdp/myloveruby', target: '_blank' do
         %img{:alt => "Beta Version", :border => "0", :src => "/forkme_right_red.png"}
@@ -76,7 +78,7 @@
           .span1 &nbsp;
           .span4{ style: 'margin-top:30px;' }
             .well.sidebar-nav.extra-top-margin
-              %h3 What it's about - 
+              %h3 What it's about -
               %p
                 I really love ruby language, and so do many folks using it. So, this is an attempt to collect reasons for that from everybody. Knowing what ticks for others in language, can be a good learning exercise.
               %p
@@ -92,34 +94,34 @@
                 .socialShares
                   %a.twitter-share-button{"data-size": "large", "data-via" => "rtdp", :href => "https://twitter.com/share", class: 'pull-right', "data-text" => "Checkout and tell - 'I love ruby because ...'"} Tweet
                 %br
-                .clr  
+                .clr
                 :javascript
                      !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
             .well.sidebar-nav
               %p
                 %h4
-                  Recently submitted by - 
-              %table{class: 'recentsTable table table-striped '}  
+                  Recently submitted by -
+              %table{class: 'recentsTable table table-striped '}
                 - if @recent_letters.present?
                   - @recent_letters.each do |l|
                     %tr
                       %td
                         .thumbnail.pull-left{ style: 'max-height: 50px; max-width: 50px' }
                           = get_twitter_image(l.user.twitter_handle)
-                        .info.pull-left  
+                        .info.pull-left
                           = truncate("#{l.user.name} (#{l.user.twitter_handle})", length: 27)
                           %br
                           %small.timeAgo
-                            = link_to letter_path(l) do 
+                            = link_to letter_path(l) do
                               = time_ago_in_words l.created_at
                               ago
-    
+
       %footer
         %hr
-        %p 
+        %p
           &copy;
           = link_to 'rtdp', 'https://twitter.com/rtdp'
-        %hr  
+        %hr
     /
       Le javascript
       \==================================================
