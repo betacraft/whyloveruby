@@ -9,7 +9,6 @@ gem 'rails', '~> 6.1.4.4'
 gem 'dotenv-rails', '~> 2.7', '>= 2.7.4'
 gem 'pg'
 
-gem 'uglifier', '>= 1.0.3'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
@@ -39,7 +38,6 @@ gem "haml-rails", "~> 2.0.1"
 gem "twitter-bootstrap-rails", "~> 3.2.2"
 gem "redcarpet", "~> 1.17.2"
 gem "nokogiri", "~> 1.12.5"
-gem "pygmentize", "~> 0.0.3"
 
 gem 'newrelic_rpm'
 gem "activeadmin", "~> 2.9.0"

@@ -31,12 +31,16 @@ Example [link](https://example.org).
 # Example heading
 
 ```ruby
+def fun
 puts 'foobar'
+end
 ```
         HEREDOC
         rendered_markdown = helper.markdown markdown_text
         doc = Nokogiri::HTML rendered_markdown
-        expect(doc.at_css('pre')).to be_truthy
+        expect(doc.at_css('pre').content).to eq "def fun\nputs 'foobar'\nend\n"
+        expect(doc.at_css('code').content).to eq "def fun\nputs 'foobar'\nend\n"
+        expect(doc.at_css('code')[:class]).to eq('language-ruby')
       end
     end
   end
