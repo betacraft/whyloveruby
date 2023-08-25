@@ -8,7 +8,10 @@ module HomeHelper
   def syntax_highlighter(html)
       doc = Nokogiri::HTML(html)
       doc.search("//pre[@lang]").each do |pre|
-        pre.replace Pygmentize.process(pre.text.rstrip, pre[:lang])
+        pre.children.each do |child|
+          next unless child.name == 'code'
+          child.set_attribute('class', "language-#{pre[:lang]}")
+        end
       end
       doc.to_s
   end
