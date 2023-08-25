@@ -9,7 +9,6 @@ gem 'rails', '~> 6.1.4.4'
 gem 'dotenv-rails', '~> 2.7', '>= 2.7.4'
 gem 'pg'
 
-gem 'uglifier', '>= 1.0.3'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
