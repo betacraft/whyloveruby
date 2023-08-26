@@ -15,6 +15,10 @@ class User < ActiveRecord::Base
       user = User.where(uid: auth.uid, provider: auth.provider).first
 
       if user
+        profile_image_url = auth["info"]["image"]
+        user.update(image: profile_image_url) if profile_image_url.present?
+
+        # TODO: handle exceptions later. For now, continue to sign in the user, regardless of whether image url is saved
         user
       else
         User.create(
