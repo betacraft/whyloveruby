@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'profile_picture/twitter/:twitter_handle', to: 'profile_picture#twitter', as: :twitter_image
+
   root 'home#index'
 
   # The priority is based upon order of creation:
