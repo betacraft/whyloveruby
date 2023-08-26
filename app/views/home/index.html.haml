@@ -38,7 +38,7 @@
                     = time_ago_in_words letter.created_at
                     ago
               .pull-right.thumbnail.imageWrapper{ style: 'max-height: 50px; max-width: 50px' }
-                = get_twitter_image(letter.user.twitter_handle)
+                = get_twitter_image(letter.user)
 
         -#          TODO refactor this
         - unless letter.user_id == 43
