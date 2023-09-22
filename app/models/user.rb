@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :registerable, :rememberable, :trackable, :database_authenticatable, :omniauthable,
-         omniauth_providers: [:twitter]
+  omniauth_providers: [:github, :twitter]
 
   # Setup accessible (or protected) attributes for your model
   # attr_accessible :remember_me, :name, :twitter_handle, :twitter_description, :twitter_description, :twitter_oauth, :website, :image
@@ -32,7 +32,20 @@ class User < ActiveRecord::Base
           image: auth["info"]["image"]
         )
       end
-
+    end
+    def from_omniauth(access_token)
+      data = access_token.info 
+      user = User.where(email: data['email']).first
+      unless user 
+        user = User.create(
+          name: data['name'],
+          email: data['email'],
+          git_username: access_token.extra.raw_info.login,
+          image: access_token.extra.raw_info.avatar_url,
+          password: Devise.friendly_token[0, 20]
+        )
+      end
+      user 
     end
 
   end

@@ -2,6 +2,7 @@ en:
   flash:
     error_signing_in:  "Error signin in !"
     successful_sign_in:  "Successfully signed in with Twitter"
+    successful_sign_in_github:  "Successfully signed in with GitHub"
     error_saving_letter:  "Oopss !! Error. Please try again."
     error_updating_letter:  'Oopss !! Error. Please try again.'
     saved_letter_successfully: "Saved successfully !" 

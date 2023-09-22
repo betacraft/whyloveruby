@@ -210,7 +210,7 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
+  config.omniauth :github, 'fce0fecb761eb92f6a84', '093f6ae3f324b7dbe4b55cec14e03ac35e13d2cc', scope: 'user:email'
   config.omniauth :twitter, ENV['TWITTER_CONSUMER_KEY'], ENV['TWITTER_CONSUMER_SECRET'],
                   { secure_image_url: 'true', image_size: 'original' }
 

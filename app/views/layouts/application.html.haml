@@ -51,6 +51,7 @@
                     |
                     = link_to "Logout", destroy_user_session_path, method: 'delete'
               - else
+                %li= link_to 'Login with GitHub' , user_github_omniauth_authorize_path, method: :post
                 %li= link_to 'Login with Twitter' , user_twitter_omniauth_authorize_path
               %li=# link_to "Link 1", "/path1"
               %li=# link_to "Link 2", "/path2"
