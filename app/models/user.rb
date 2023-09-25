@@ -35,14 +35,13 @@ class User < ActiveRecord::Base
     end
     def from_omniauth(access_token)
       data = access_token.info 
-      user = User.where(email: data['email']).first
+      user = User.where(github_handle: access_token.extra.raw_info.login).first
       unless user 
         user = User.create(
           name: data['name'],
           email: data['email'],
-          git_username: access_token.extra.raw_info.login,
+          github_handle: access_token.extra.raw_info.login,
           image: access_token.extra.raw_info.avatar_url,
-          password: Devise.friendly_token[0, 20]
         )
       end
       user 
