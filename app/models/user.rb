@@ -9,11 +9,13 @@ class User < ActiveRecord::Base
 
   has_many :letters
   has_many :likes
+  has_one :external_identity
 
   class << self
     def find_for_twitter_oauth(auth)
-      user = User.where(uid: auth.uid, provider: auth.provider).first
-
+      user = User.joins(:external_identity)
+             .where(external_identities: { uid: auth.uid, provider: auth.provider })
+             .first
       if user
         profile_image_url = auth["info"]["image"]
         user.update(image: profile_image_url) if profile_image_url.present?
@@ -35,16 +37,22 @@ class User < ActiveRecord::Base
     end
     def from_omniauth(access_token)
       data = access_token.info 
-      user = User.where(github_handle: access_token.extra.raw_info.login).first
-      unless user 
+      user = User.joins(:external_identity)
+            .where(external_identities: { uid: access_token.uid, provider: access_token.provider })
+            .first
+      if user 
+        user.update(name: data['name'], email: data['email'], github_handle: access_token.extra.raw_info.login, image: access_token.extra.raw_info.avatar_url)
+
+        user
+      else 
         user = User.create(
           name: data['name'],
           email: data['email'],
           github_handle: access_token.extra.raw_info.login,
           image: access_token.extra.raw_info.avatar_url,
         )
+        user.create_external_identity(uid: access_token.uid, provider: access_token.provider)
       end
-      user 
     end
 
   end

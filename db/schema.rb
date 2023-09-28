@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_25_094135) do
+ActiveRecord::Schema.define(version: 2023_09_27_134147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,15 @@ ActiveRecord::Schema.define(version: 2023_09_25_094135) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "external_identities", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "provider"
+    t.string "uid"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_external_identities_on_user_id"
   end
 
   create_table "letters", force: :cascade do |t|
@@ -80,11 +89,8 @@ ActiveRecord::Schema.define(version: 2023_09_25_094135) do
     t.string "twitter_description"
     t.string "website"
     t.string "image"
-    t.string "provider"
-    t.string "uid"
     t.string "github_handle"
-    t.index ["provider"], name: "index_users_on_provider"
-    t.index ["uid"], name: "index_users_on_uid"
   end
 
+  add_foreign_key "external_identities", "users"
 end
