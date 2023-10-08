@@ -27,7 +27,7 @@
 
             .personalInfo.pull-right
               .pull-right.names
-                = letter.user.external_identities.find_by(provider: 'github').handle
+                = letter.user.external_identities.find_by(provider: 'github').name
                 %br
                 %strong
                   - if letter.user.external_identities.where(provider: 'twitter').exists?
