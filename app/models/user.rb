@@ -9,52 +9,40 @@ class User < ActiveRecord::Base
 
   has_many :letters
   has_many :likes
-  has_one :external_identity
+  has_many :external_identities
 
   class << self
     def find_for_twitter_oauth(auth)
-      user = User.joins(:external_identity)
+      user = User.joins(:external_identities)
              .where(external_identities: { uid: auth.uid, provider: auth.provider })
              .first
       if user
-        profile_image_url = auth["info"]["image"]
-        user.update(image: profile_image_url) if profile_image_url.present?
-
+        user.external_identities.find_by(provider: 'github').update(handle: auth.info.nickname, twitter_description: auth.info.description, 
+                                        website: auth.info.urls.Website, oauth: auth.credentials.token, name: auth.info.name, image: auth.info.image)
         # TODO: handle exceptions later. For now, continue to sign in the user, regardless of whether image url is saved
         user
       else
-        User.create(
-          uid: auth["uid"],
-          provider: auth["provider"],
-          name: auth["info"]["name"],
-          twitter_handle: auth["info"]["nickname"],
-          twitter_description: auth["info"]["description"],
-          website: (auth["info"]["urls"]["Website"] rescue nil),
-          twitter_oauth: auth["credentials"]["token"],
-          image: auth["info"]["image"]
-        )
+        user = User.create
+        user.external_identities.create(uid: auth.uid, provider: auth.provider, handle: auth.info.nickname, name: auth.info.name, image: auth.info.image,
+                                        twitter_description: auth.info.description, website: auth.info.urls.Website, oauth: auth.credentials.token)
+                                
       end
     end
     def from_omniauth(access_token)
       data = access_token.info 
-      user = User.joins(:external_identity)
+      user = User.joins(:external_identities)
             .where(external_identities: { uid: access_token.uid, provider: access_token.provider })
             .first
       if user 
-        user.update(name: data['name'], email: data['email'], github_handle: access_token.extra.raw_info.login, image: access_token.extra.raw_info.avatar_url)
-
+        user.external_identities.find_by(provider: 'github').update(handle: access_token.extra.raw_info.login, name: data['name'], email: data['email'], image: access_token.extra.raw_info.avatar_url)
         user
       else 
-        user = User.create(
-          name: data['name'],
-          email: data['email'],
-          github_handle: access_token.extra.raw_info.login,
-          image: access_token.extra.raw_info.avatar_url,
-        )
-        user.create_external_identity(uid: access_token.uid, provider: access_token.provider)
+        user = User.create
+        user.external_identities.create(uid: access_token.uid, provider: access_token.provider, handle: 
+                                        access_token.extra.raw_info.login, image: access_token.extra.raw_info.avatar_url, name: data.name, email: data.email)
+        user
       end
     end
 
-  end
-
+  end  
 end

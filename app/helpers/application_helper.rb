@@ -8,16 +8,18 @@ module ApplicationHelper
   RubyConfIndia2023 = Date.parse('2023-08-26')
 
   def image_for_twitter_handle(user)
-    if user.updated_at.after?(RubyConfIndia2023) && user.image.present?
+    if user.updated_at.after?(RubyConfIndia2023)
       # this is a quick workaround for being unable to fetch images via Cloudinary for new twitter sign_ins due to Twitter API policy changes.
       # one problem with continuing to use this long term would be:
       #   - if a user changes their profile picture, the url saved on our model will become invalid
       #      we do have a fallback to default image in place, but it's not ideal
       #   - As an improvement, we can try to cache it (more like a permanent snapshot until their next login)
       #   - But a proper solution would be to fetch their current profile picture via a service or to periodically refresh it ourself
-      user.image
+      user.external_identities.find_by(provider: 'twitter')&.image
+      user.external_identities.find_by(provider: 'github')&.image
     else
-      cloudinary_image_url(user.twitter_handle)
+      user_handle = user.external_identities.find_by(provider: 'twitter')&.handle
+      cloudinary_image_url(user_handle)
     end
   end
 

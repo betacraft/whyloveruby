@@ -12,16 +12,21 @@
               = link_to 'UpVote', '#', class: 'btn', rel: 'popover', data: {content: "You need to login first to Like it. ", title: 'Oops !!'}
           .personalInfo.pull-right
             .pull-right.names
-              = @letter.user.name
+              = @letter.user.external_identities.order(updated_at: :desc).first.name
               %br
               %strong
-                -if @letter.user.twitter_handle.present?
-                  %a{ href: "https://www.twitter.com/#{@letter.user.twitter_handle}", target: "_blank" }
-                    = "@#{@letter.user.twitter_handle}"
+                -if @letter.user.external_identities.where(provider: 'twitter').exists?
+                  - twitter_identity = @letter.user.external_identities.find_by(provider: 'twitter')
+                  %a{ href: "https://www.twitter.com/#{twitter_identity.handle}", target: "_blank" }
+                    %img{ src: asset_path('twitter.png'), alt: "Twitter Logo", width: "24" } 
+                    = "@#{twitter_identity.handle}"
+                  %br  
               %strong
-                -if @letter.user.github_handle.present?
-                  %a{ href: "https://www.github.com/#{@letter.user.github_handle}", target: "_blank" }
-                    = "@#{@letter.user.github_handle}"
+                -if @letter.user.external_identities.where(provider: 'github').exists?
+                  - github_identity = @letter.user.external_identities.find_by(provider: 'github')
+                  %a{ href: "https://www.github.com/#{github_identity.handle}", target: "_blank" }
+                    %img{ src: asset_path('github-logo.png'), alt: "GitHub Logo", width: "24" } 
+                    = "@#{github_identity.handle}"
               %br
               %small.timeAgo
                 = link_to letter_path(@letter) do
@@ -33,9 +38,16 @@
       %br
       %div
         %div.pull-left
-          %a.twitter-share-button{"data-size": "large", "data-hashtags": "whyloveruby", "data-url": "#{root_url}",
-                 href: "https://twitter.com/share", class: 'pull-right',
-                 "data-text": "Here is @#{@letter.user.twitter_handle}\'s reason to love Ruby. -  #{letter_url(@letter)}\n Tell us yours at" }
+          - if @letter.user.external_identities.where(provider: 'github').exists?
+            - github_identity = @letter.user.external_identities.find_by(provider: 'github')
+            - github_url = "https://www.github.com/#{github_identity.handle}"
+            %a.twitter-share-button{"data-size": "large", "data-hashtags": "whyloveruby", href: "https://twitter.com/share", class: 'pull-right', "data-text": "Here is (#{github_url})'s'  reason to love Ruby. -  #{letter_url(@letter)}\n Tell us yours at"}
+          .clr
+          -if @letter.user.external_identities.where(provider: 'twitter').exists?
+            - twitter_identity = @letter.user.external_identities.find_by(provider: 'twitter')
+            %a.twitter-share-button{"data-size": "large", "data-hashtags": "whyloveruby",
+                   href: "https://twitter.com/share", class: 'pull-right',
+                   "data-text": "Here is @#{twitter_identity.handle}\'s reason to love Ruby. -  #{letter_url(@letter)}\n Tell us yours at"}
         .clr
         :javascript
                  !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");

@@ -50,6 +50,13 @@ ActiveRecord::Schema.define(version: 2023_09_27_134147) do
     t.bigint "user_id", null: false
     t.string "provider"
     t.string "uid"
+    t.string "oauth"
+    t.string "handle"
+    t.string "description"
+    t.string "website"
+    t.string "name"
+    t.string "email"
+    t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_external_identities_on_user_id"
@@ -73,7 +80,6 @@ ActiveRecord::Schema.define(version: 2023_09_27_134147) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email", default: ""
     t.string "encrypted_password", default: ""
     t.datetime "remember_created_at"
     t.integer "sign_in_count", default: 0
@@ -83,13 +89,6 @@ ActiveRecord::Schema.define(version: 2023_09_27_134147) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
-    t.string "twitter_oauth"
-    t.string "twitter_handle"
-    t.string "twitter_description"
-    t.string "website"
-    t.string "image"
-    t.string "github_handle"
   end
 
   add_foreign_key "external_identities", "users"

@@ -47,7 +47,8 @@
                 %li
                   %span.welcome
                     Welcome,
-                    = current_user.twitter_handle
+                    = current_user.external_identities.find_by(provider: 'twitter')&.handle
+                    = current_user.external_identities.find_by(provider: 'github')&.handle
                     |
                     = link_to "Logout", destroy_user_session_path, method: 'delete'
               - else
@@ -110,7 +111,8 @@
                         .thumbnail.pull-left{ style: 'max-height: 50px; max-width: 50px' }
                           = get_twitter_image(l.user)
                         .info.pull-left
-                          = truncate("#{l.user.name} (#{l.user.twitter_handle})", length: 27)
+                          - user_info = "#{l.user.external_identities.find_by(provider: 'github')&.name} (#{l.user.external_identities.find_by(provider: 'twitter')&.handle})"
+                          = truncate(user_info, length: 27)
                           %br
                           %small.timeAgo
                             = link_to letter_path(l) do
