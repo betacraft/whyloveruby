@@ -7,7 +7,8 @@ gem 'rails', '~> 6.1.4.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'dotenv-rails', '~> 2.7', '>= 2.7.4'
-gem 'pg'
+
+gem 'pg', '~> 1.5', '>= 1.5.4'
 
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
@@ -31,14 +32,15 @@ gem 'jbuilder', '~> 2.7'
 gem 'twitter', '~> 6.2.0'
 gem 'sentry-raven', '~> 2.11'
 
-gem "devise", "~> 4.7.3"
-gem "omniauth", "~>1.9.0"
+gem 'devise', '~> 4.9', '>= 4.9.2'
+gem 'omniauth', '~> 2.1', '>= 2.1.1'
 gem "omniauth-twitter", "~> 1.4.0"
+gem 'omniauth-github', '~> 2.0.0'
+gem "omniauth-rails_csrf_protection"
 gem "haml-rails", "~> 2.0.1"
 gem "twitter-bootstrap-rails", "~> 3.2.2"
 gem "redcarpet", "~> 1.17.2"
-gem "nokogiri", "~> 1.12.5"
-
+gem 'nokogiri', '~> 1.15', '>= 1.15.4'
 gem 'newrelic_rpm'
 gem "activeadmin", "~> 2.9.0"
 # Reduces boot times through caching; required in config/boot.rb

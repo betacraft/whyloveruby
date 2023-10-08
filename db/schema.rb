@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_03_025721) do
+ActiveRecord::Schema.define(version: 2023_09_27_134147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,22 @@ ActiveRecord::Schema.define(version: 2019_08_03_025721) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "external_identities", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "provider"
+    t.string "uid"
+    t.string "oauth"
+    t.string "handle"
+    t.string "description"
+    t.string "website"
+    t.string "name"
+    t.string "email"
+    t.string "image"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_external_identities_on_user_id"
+  end
+
   create_table "letters", force: :cascade do |t|
     t.text "description"
     t.bigint "user_id"
@@ -64,7 +80,6 @@ ActiveRecord::Schema.define(version: 2019_08_03_025721) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email", default: ""
     t.string "encrypted_password", default: ""
     t.datetime "remember_created_at"
     t.integer "sign_in_count", default: 0
@@ -74,16 +89,7 @@ ActiveRecord::Schema.define(version: 2019_08_03_025721) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
-    t.string "twitter_oauth"
-    t.string "twitter_handle"
-    t.string "twitter_description"
-    t.string "website"
-    t.string "image"
-    t.string "provider"
-    t.string "uid"
-    t.index ["provider"], name: "index_users_on_provider"
-    t.index ["uid"], name: "index_users_on_uid"
   end
 
+  add_foreign_key "external_identities", "users"
 end
