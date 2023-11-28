@@ -7,8 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require 'faker'
 
-10.times do
-  User.create(name: Faker::Name.unique.name, image: Faker::LoremFlickr.image)
+60.times do |i|
+  User.create(name: Faker::Name.unique.name, image: Faker::LoremFlickr.image, provider: "twitter", uid: i)
 end
 
 21.times do
