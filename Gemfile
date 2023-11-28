@@ -35,7 +35,7 @@ gem "devise", "~> 4.7.3"
 gem "omniauth", "~>1.9.0"
 gem "omniauth-twitter", "~> 1.4.0"
 gem "haml-rails", "~> 2.0.1"
-gem "twitter-bootstrap-rails", "~> 3.2.2"
+gem "twitter-bootstrap-rails", "~> 5.0.0"
 gem "redcarpet", "~> 1.17.2"
 gem "nokogiri", "~> 1.12.5"
 
