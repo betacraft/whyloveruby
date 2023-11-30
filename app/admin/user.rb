@@ -2,7 +2,6 @@
 
     index do
       column :id
-      column :twitter_handle
       column :name
       column :last_sign_in_at
       column :created_at
