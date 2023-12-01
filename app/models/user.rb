@@ -20,11 +20,27 @@ class User < ActiveRecord::Base
              .first
       if user
         user.update(name: auth.info.name)
-        user.external_identities.find_by(provider: 'twitter').update(handle: auth.info.nickname, description: auth.info.description, website: auth.info.urls.Website, oauth: auth.credentials.token, name: auth.info.name, image: auth.info.image)
+        user.external_identities.find_by(provider: 'twitter').update(
+          handle: auth.info.nickname, 
+          description: auth.info.description, 
+          website: auth.info.urls.Website, 
+          oauth: auth.credentials.token, 
+          name: auth.info.name, 
+          image: auth.info.image
+        )
         user
       else
         user = User.create(name: auth.info.name)
-        user.external_identities.create(uid: auth.uid, provider: auth.provider, handle: auth.info.nickname, name: auth.info.name, image: auth.info.image, description: auth.info.description, website: auth.info.urls.Website, oauth: auth.credentials.token)    
+        user.external_identities.create(
+          uid: auth.uid, 
+          provider: auth.provider, 
+          handle: auth.info.nickname, 
+          name: auth.info.name, 
+          image: auth.info.image, 
+          description: auth.info.description, 
+          website: auth.info.urls.Website, 
+          oauth: auth.credentials.token
+        )    
         user
       end
     end

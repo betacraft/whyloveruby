@@ -9,6 +9,7 @@
       column :letters_count do |user|
         user.letters.count
       end
+      column :external_identities
       column :likes do |user|
         user.likes.count
       end
