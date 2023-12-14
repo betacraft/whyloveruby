@@ -50,7 +50,7 @@
                 %li
                   %span.welcome
                     Welcome,
-                    = current_user.external_identities.find_by(provider: 'twitter')&.handle
+                    = current_user.twitter_identity&.handle
                     |
                     = link_to "Logout", destroy_user_session_path, method: 'delete'
               - else
@@ -114,7 +114,7 @@
                         .thumbnail.pull-left{ style: 'max-height: 50px; max-width: 50px' }
                           = get_twitter_image(l.user)
                         .info.pull-left
-                          - twitter_identity = l.user.external_identities.find_by(provider: 'twitter')
+                          - twitter_identity = l.user.twitter_identity
                           = truncate("#{twitter_identity.name} (#{twitter_identity.handle})", length: 27)
                           %br
                           %small.timeAgo

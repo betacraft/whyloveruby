@@ -12,6 +12,9 @@ class User < ActiveRecord::Base
   has_many :letters
   has_many :likes
   has_many :external_identities
+  has_one :twitter_identity, -> { where provider: 'twitter' }, class_name: "ExternalIdentity" 
+
+  
 
   class << self
     def find_for_twitter_oauth(auth)
@@ -20,7 +23,7 @@ class User < ActiveRecord::Base
              .first
       if user
         user.update(name: auth.info.name)
-        user.external_identities.find_by(provider: 'twitter').update(
+        user.twitter_identity.update(
           handle: auth.info.nickname, 
           description: auth.info.description, 
           website: auth.info.urls.Website, 

@@ -32,7 +32,7 @@
                 = letter.user.name
                 %br
                 %strong
-                  - twitter_identity = letter.user.external_identities.find_by(provider: 'twitter')
+                  - twitter_identity = letter.user.twitter_identity
                   %a{ href: "https://www.twitter.com/#{twitter_identity.handle}", target: "_blank" }
                     = "@#{twitter_identity.handle}"
                 %br
@@ -54,7 +54,7 @@
         %br
         %div
           %div.pull-left
-            - twitter_identity = letter.user.external_identities.find_by(provider: 'twitter')
+            - twitter_identity = letter.user.twitter_identity
             %a.twitter-share-button{"data-size": "large", "data-hashtags": "whyloveruby", "data-url": "#{root_url}",
                    href: "https://twitter.com/share", class: 'pull-right',
                    "data-text": "Here is @#{twitter_identity.handle}\'s reason to love Ruby. -  #{letter_url(letter)}\n Tell us yours at" }
