@@ -7,6 +7,5 @@ class RemoverUserAttributesFromUserTable < ActiveRecord::Migration[6.1]
     remove_column :users, :twitter_description, :string
     remove_column :users, :website, :string
     remove_column :users, :image, :string
-    remove_column :users, :email, :string
   end
 end
