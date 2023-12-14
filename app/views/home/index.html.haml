@@ -10,6 +10,7 @@
       -else
         = link_to 'Submit', '#', class: 'btn primary pull-right disabled', rel: 'popover', data: {title: 'Oops!!', content: 'You need to login first to submit!!'}
 
+
 %hr
 .row
   .span8
@@ -25,13 +26,15 @@
               - else
                 = link_to 'UpVote', '#', class: 'btn', rel: 'popover', data: {content: "You need to login first to Like it. ", title: 'Oops !!'}
 
+
             .personalInfo.pull-right
               .pull-right.names
                 = letter.user.name
                 %br
                 %strong
-                  %a{ href: "https://www.twitter.com/#{letter.user.twitter_handle}", target: "_blank" }
-                    = "@#{letter.user.twitter_handle}"
+                  - twitter_identity = letter.user.twitter_identity
+                  %a{ href: "https://www.twitter.com/#{twitter_identity.handle}", target: "_blank" }
+                    = "@#{twitter_identity.handle}"
                 %br
                 %small.timeAgo
                   = link_to letter_path(letter) do
@@ -39,6 +42,7 @@
                     ago
               .pull-right.thumbnail.imageWrapper{ style: 'max-height: 50px; max-width: 50px' }
                 = get_twitter_image(letter.user)
+
 
         -#          TODO refactor this
         - unless letter.user_id == 43
@@ -50,9 +54,11 @@
         %br
         %div
           %div.pull-left
-            %a.twitter-share-button{"data-size": "large", "data-hashtags": "whyloveruby",
-                 href: "https://twitter.com/share", class: 'pull-right',
-                 "data-text": "Here is @#{letter.user.twitter_handle}\'s reason to love Ruby. -  #{letter_url(letter)}\n Tell us yours at"}
+            - twitter_identity = letter.user.twitter_identity
+            %a.twitter-share-button{"data-size": "large", "data-hashtags": "whyloveruby", "data-url": "#{root_url}",
+                   href: "https://twitter.com/share", class: 'pull-right',
+                   "data-text": "Here is @#{twitter_identity.handle}\'s reason to love Ruby. -  #{letter_url(letter)}\n Tell us yours at" }
+
 
           .clr
           :javascript
