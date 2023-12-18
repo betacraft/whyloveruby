@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_10_11_140047) do
+ActiveRecord::Schema.define(version: 2023_12_01_112603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,7 +82,6 @@ ActiveRecord::Schema.define(version: 2023_10_11_140047) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email", default: ""
     t.string "encrypted_password", default: ""
     t.datetime "remember_created_at"
     t.integer "sign_in_count", default: 0
@@ -93,15 +92,7 @@ ActiveRecord::Schema.define(version: 2023_10_11_140047) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
-    t.string "twitter_oauth"
-    t.string "twitter_handle"
-    t.string "twitter_description"
-    t.string "website"
-    t.string "image"
-    t.string "provider"
-    t.string "uid"
-    t.index ["provider"], name: "index_users_on_provider"
-    t.index ["uid"], name: "index_users_on_uid"
+    t.string "email"
   end
 
   add_foreign_key "external_identities", "users"

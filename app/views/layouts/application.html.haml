@@ -11,6 +11,7 @@
     %meta{:content => "Why Love Ruby", :property => "og:site_name"}/
     %meta{:content => "Why Love Ruby", :itemprop => "name"}
 
+
     %title= "I Love Ruby because .."
     = csrf_meta_tags
     / Le HTML5 shim, for IE6-8 support of HTML elements
@@ -32,6 +33,8 @@
     %script{:src => "//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"}
 
 
+
+
   %body
     .navbar.navbar-fixed-top.navbar-inverse
       .navbar-inner
@@ -47,18 +50,24 @@
                 %li
                   %span.welcome
                     Welcome,
-                    = current_user.twitter_handle
+                    - if current_user.twitter_identity.present?
+                      = current_user.twitter_identity&.handle
+                    - if current_user.github_identity.present?
+                      = current_user.github_identity&.handle
                     |
                     = link_to "Logout", destroy_user_session_path, method: 'delete'
               - else
-                %li= link_to 'Login with Twitter' , user_twitter_omniauth_authorize_path
+                %li= link_to 'Login with Twitter' , user_twitter_omniauth_authorize_path, method: :post
+                %li= link_to 'Login with GitHub' , user_github_omniauth_authorize_path, method: :post
               %li=# link_to "Link 1", "/path1"
               %li=# link_to "Link 2", "/path2"
               %li=# link_to "Link 3", "/path3"
 
+
     %div{:style => "position:absolute; top:0; right:0;z-index:1040"}
       = link_to 'https://github.com/rtdp/myloveruby', target: '_blank' do
         %img{:alt => "Beta Version", :border => "0", :src => "/forkme_right_red.png"}
+
 
     .container
       .row
@@ -109,12 +118,18 @@
                         .thumbnail.pull-left{ style: 'max-height: 50px; max-width: 50px' }
                           = get_twitter_image(l.user)
                         .info.pull-left
-                          = truncate("#{l.user.name} (#{l.user.twitter_handle})", length: 27)
+                          - if l.user.twitter_identity.present?
+                            - twitter_identity = l.user.twitter_identity
+                            = truncate("#{twitter_identity.name} (#{twitter_identity.handle})", length: 27)
+                          - if l.user.github_identity.present?
+                            - github_identity = l.user.github_identity
+                            = truncate("#{github_identity.name} (#{github_identity.handle})", length: 27)
                           %br
                           %small.timeAgo
                             = link_to letter_path(l) do
                               = time_ago_in_words l.created_at
                               ago
+
 
       %footer
         %hr
@@ -131,6 +146,7 @@
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-10763136-15']);
         _gaq.push(['_trackPageview']);
+
 
         (function() {
           var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
