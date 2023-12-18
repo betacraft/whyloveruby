@@ -50,11 +50,15 @@
                 %li
                   %span.welcome
                     Welcome,
-                    = current_user.twitter_identity&.handle
+                    - if current_user.twitter_identity.present?
+                      = current_user.twitter_identity&.handle
+                    - if current_user.github_identity.present?
+                      = current_user.github_identity&.handle
                     |
                     = link_to "Logout", destroy_user_session_path, method: 'delete'
               - else
                 %li= link_to 'Login with Twitter' , user_twitter_omniauth_authorize_path, method: :post
+                %li= link_to 'Login with GitHub' , user_github_omniauth_authorize_path, method: :post
               %li=# link_to "Link 1", "/path1"
               %li=# link_to "Link 2", "/path2"
               %li=# link_to "Link 3", "/path3"
@@ -114,8 +118,12 @@
                         .thumbnail.pull-left{ style: 'max-height: 50px; max-width: 50px' }
                           = get_twitter_image(l.user)
                         .info.pull-left
-                          - twitter_identity = l.user.twitter_identity
-                          = truncate("#{twitter_identity.name} (#{twitter_identity.handle})", length: 27)
+                          - if l.user.twitter_identity.present?
+                            - twitter_identity = l.user.twitter_identity
+                            = truncate("#{twitter_identity.name} (#{twitter_identity.handle})", length: 27)
+                          - if l.user.github_identity.present?
+                            - github_identity = l.user.github_identity
+                            = truncate("#{github_identity.name} (#{github_identity.handle})", length: 27)
                           %br
                           %small.timeAgo
                             = link_to letter_path(l) do

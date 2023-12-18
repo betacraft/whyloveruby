@@ -32,9 +32,14 @@
                 = letter.user.name
                 %br
                 %strong
-                  - twitter_identity = letter.user.twitter_identity
-                  %a{ href: "https://www.twitter.com/#{twitter_identity.handle}", target: "_blank" }
-                    = "@#{twitter_identity.handle}"
+                  - if letter.user.twitter_identity.present?
+                    - twitter_identity = letter.user.twitter_identity
+                    %a{ href: "https://www.twitter.com/#{twitter_identity.handle}", target: "_blank" }
+                      = "@#{twitter_identity.handle}"
+                  - if letter.user.github_identity.present?
+                    - github_identity = letter.user.github_identity
+                    %a{ href: "https://www.github.com/#{github_identity.handle}", target: "_blank" }
+                      = "@#{github_identity.handle}"
                 %br
                 %small.timeAgo
                   = link_to letter_path(letter) do
@@ -54,12 +59,16 @@
         %br
         %div
           %div.pull-left
-            - twitter_identity = letter.user.twitter_identity
-            %a.twitter-share-button{"data-size": "large", "data-hashtags": "whyloveruby", "data-url": "#{root_url}",
+            - if letter.user.twitter_identity.present?
+              - twitter_identity = letter.user.twitter_identity
+              %a.twitter-share-button{"data-size": "large", "data-hashtags": "whyloveruby", "data-url": "#{root_url}",
                    href: "https://twitter.com/share", class: 'pull-right',
                    "data-text": "Here is @#{twitter_identity.handle}\'s reason to love Ruby. -  #{letter_url(letter)}\n Tell us yours at" }
-
-
+            - if letter.user.github_identity.present?
+              - github_identity = letter.user.github_identity
+              %a.twitter-share-button{"data-size": "large", "data-hashtags": "whyloveruby", "data-url": "#{root_url}",
+                   href: "https://twitter.com/share", class: 'pull-right',
+                   "data-text": "Here is @#{github_identity.handle}\'s reason to love Ruby. -  #{letter_url(letter)}\n Tell us yours at" }
           .clr
           :javascript
                    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
