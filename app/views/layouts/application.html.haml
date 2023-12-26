@@ -73,9 +73,7 @@
               = flash[:error]
       .content
         .row
-          .span8
-            = yield
-          .span1 &nbsp;
+          = yield
           - unless devise_url?
             .span4{ style: 'margin-top:30px;' }
               .well.sidebar-nav.extra-top-margin

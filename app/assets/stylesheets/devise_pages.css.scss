@@ -1,0 +1,46 @@
+.deviseForm {
+  margin: auto;
+  width: 50%;
+}
+
+.deviseHeading {
+  text-align: center;
+  margin-right: 10%;
+}
+
+.deviseRow {
+  display: flex;
+}
+
+.deviseColumn {
+  flex: 50%;
+  padding-left: 30px;
+  height: 300px;
+}
+
+.borderRight {
+  border-right: 2px solid black;
+}
+
+.actionButton {
+  position: relative;
+  margin-top: 10px;
+}
+
+.sharedLinks {
+  position: relative;
+  margin-top: 10px;
+}
+
+.deviseButtons {
+  border: 2px solid black;
+  color: blue;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  padding: 3% 5%;
+}
