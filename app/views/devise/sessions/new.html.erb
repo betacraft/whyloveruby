@@ -8,7 +8,7 @@
       </div>
     </div>
 
-    <div class="deviseColumn"
+    <div class="deviseColumn">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="field">
           <%= f.label :email %>
@@ -28,9 +28,10 @@
         <% end %>
 
         <div class="actions">
-          <%= f.submit "Sign In", class: "actionButton deviseButtons"%>
+          <%= f.submit "Sign In"%>
         </div>
       <% end %>
+
       <div class="sharedLinks deviseButtons">
         <%= render "devise/shared/links", class: ""%>
       </div>
