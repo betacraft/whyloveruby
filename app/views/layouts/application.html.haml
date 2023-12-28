@@ -51,7 +51,7 @@
                     |
                     = link_to "Logout", destroy_user_session_path, method: 'delete'
               - else
-                %li= link_to 'Login with Twitter' , user_twitter_omniauth_authorize_path
+                %li= link_to 'Login Page' , new_user_session_path
               %li=# link_to "Link 1", "/path1"
               %li=# link_to "Link 2", "/path2"
               %li=# link_to "Link 3", "/path3"
@@ -73,48 +73,47 @@
               = flash[:error]
       .content
         .row
-          .span8
-            = yield
-          .span1 &nbsp;
-          .span4{ style: 'margin-top:30px;' }
-            .well.sidebar-nav.extra-top-margin
-              %h3 What it's about -
-              %p
-                I really love ruby language, and so do many folks using it. So, this is an attempt to collect reasons for that from everybody. Knowing what ticks for others in language, can be a good learning exercise.
-              %p
-                So, just put in here -
-                %ul
-                  %li
-                    The first thing, that comes to your mind about awesomeness of Ruby.
-                  %li
-                    Thing, of which you feel relived, when you think of coding Ruby than any other language.
-                  %li
-                    Or just imagine yourself writing a love letter to Ruby, with her best qualities, and write a one here.
-              %p
-                .socialShares
-                  %a.twitter-share-button{"data-size": "large", "data-via" => "rtdp", :href => "https://twitter.com/share", class: 'pull-right', "data-text" => "Checkout and tell - 'I love ruby because ...'"} Tweet
-                %br
-                .clr
-                :javascript
-                     !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-            .well.sidebar-nav
-              %p
-                %h4
-                  Recently submitted by -
-              %table{class: 'recentsTable table table-striped '}
-                - if @recent_letters.present?
-                  - @recent_letters.each do |l|
-                    %tr
-                      %td
-                        .thumbnail.pull-left{ style: 'max-height: 50px; max-width: 50px' }
-                          = get_twitter_image(l.user)
-                        .info.pull-left
-                          = truncate("#{l.user.name} (#{l.user.twitter_handle})", length: 27)
-                          %br
-                          %small.timeAgo
-                            = link_to letter_path(l) do
-                              = time_ago_in_words l.created_at
-                              ago
+          = yield
+          - unless devise_url?
+            .span4{ style: 'margin-top:30px;' }
+              .well.sidebar-nav.extra-top-margin
+                %h3 What it's about -
+                %p
+                  I really love ruby language, and so do many folks using it. So, this is an attempt to collect reasons for that from everybody. Knowing what ticks for others in language, can be a good learning exercise.
+                %p
+                  So, just put in here -
+                  %ul
+                    %li
+                      The first thing, that comes to your mind about awesomeness of Ruby.
+                    %li
+                      Thing, of which you feel relived, when you think of coding Ruby than any other language.
+                    %li
+                      Or just imagine yourself writing a love letter to Ruby, with her best qualities, and write a one here.
+                %p
+                  .socialShares
+                    %a.twitter-share-button{"data-size": "large", "data-via" => "rtdp", :href => "https://twitter.com/share", class: 'pull-right', "data-text" => "Checkout and tell - 'I love ruby because ...'"} Tweet
+                  %br
+                  .clr
+                  :javascript
+                       !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+              .well.sidebar-nav
+                %p
+                  %h4
+                    Recently submitted by -
+                %table{class: 'recentsTable table table-striped '}
+                  - if @recent_letters.present?
+                    - @recent_letters.each do |l|
+                      %tr
+                        %td
+                          .thumbnail.pull-left{ style: 'max-height: 50px; max-width: 50px' }
+                            = get_twitter_image(l.user)
+                          .info.pull-left
+                            = truncate("#{l.user.name} (#{l.user.twitter_handle})", length: 27)
+                            %br
+                            %small.timeAgo
+                              = link_to letter_path(l) do
+                                = time_ago_in_words l.created_at
+                                ago
 
       %footer
         %hr

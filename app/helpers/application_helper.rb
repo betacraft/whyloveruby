@@ -24,4 +24,9 @@ module ApplicationHelper
   def cloudinary_image_url(twitter_handle)
     "https://res.cloudinary.com/#{ENV['CLOUDINARY_HANDLE']}/image/twitter_name/#{twitter_handle}.jpg"
   end
+
+  # to remove why it's ruby section on devise pages like signin and signup
+  def devise_url?
+    request.path.starts_with?('/users/auth') || devise_controller?
+  end
 end
