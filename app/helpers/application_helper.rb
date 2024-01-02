@@ -11,19 +11,17 @@ module ApplicationHelper
 
 
   def image_for_twitter_handle(user)
-    if user.updated_at.after?(RubyConfIndia2023) && user.twitter_identity&.image.present?
-      user.twitter_identity&.image
-    elsif user.updated_at.after?(RubyConfIndia2023) && user.github_identity&.image.present?
-      user.github_identity&.image 
+    if user.updated_at.after?(RubyConfIndia2023) && user.twitter_identity.present?
+      if user.twitter_identity.profile_image.attached?
+        url_for(user.twitter_identity.profile_image) 
+      else
+        "https://res.cloudinary.com/whyloveruby/image/twitter_name/ZeDalaye.jpg"
+      end
+    elsif user.updated_at.after?(RubyConfIndia2023) && user.github_identity.present?
+      url_for(user.github_identity.profile_image) if user.github_identity.profile_image.attached?
     else
       user_handle = user.twitter_identity&.handle if user.twitter_identity.present?
       user_handle = user.github_identity&.handle if user.github_identity.present?
-      cloudinary_image_url(user_handle)
     end
-  end
-
-
-  def cloudinary_image_url(twitter_handle)
-    "https://res.cloudinary.com/#{ENV['CLOUDINARY_HANDLE']}/image/twitter_name/#{twitter_handle}.jpg"
   end
 end
