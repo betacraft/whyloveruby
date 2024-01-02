@@ -116,7 +116,7 @@
                     %tr
                       %td
                         .thumbnail.pull-left{ style: 'max-height: 50px; max-width: 50px' }
-                          = get_twitter_image(l.user)
+                          = get_profile_image(l.user)
                         .info.pull-left
                           - if l.user.twitter_identity.present?
                             - twitter_identity = l.user.twitter_identity

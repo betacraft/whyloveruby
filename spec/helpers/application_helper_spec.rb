@@ -15,32 +15,28 @@ RSpec.describe ApplicationHelper, type: :helper do
     # actual context: We realized just in time before RubyConfIndia2023 that due to Twitter API changes
     # we are unable to retrieve profile pictures for new twitter sign_ups through Cloudinary
 
-    context 'get_twitter_image for User who last signed in before RubyIndiaConf 2023' do
-      it 'should render image tag with the twitter handle' do
+    context 'get_profile_image for User' do
+      it 'should render image tag with the twitter handle from active storage' do
         user = User.create(updated_at: Date.parse('2022-12-31').end_of_day)
         user.external_identities.create(handle: "my_twitter_handle", provider: "twitter", uid: "252152")
-        expect(helper.get_twitter_image(user)).to match("cloudinary.*my_twitter_handle\.jpg")
+
+        image_path = Rails.root.join('app', 'assets', 'images', 'rails.png')
+        user.twitter_identity.profile_image.attach(io: File.open(image_path), filename: 'my_twitter_handle.png')
+    
+        generated_url = helper.get_profile_image(user)
+    
+        expect(generated_url).to match("profile_image.*my_twitter_handle\.png")
       end
-    end
-    context 'get_twitter_image for User who last signed in after RubyIndiaConf 2023' do
-      it 'should render image tag with twitter handle (in the unlikely case, our User model does not contain the image url)' do
-        user = User.create(updated_at: Date.parse('2024-01-01').end_of_day)
-        user.external_identities.create(handle: "my_twitter_handle", provider: "twitter", uid: "252152")
-        expect(helper.get_twitter_image(user)).to match("cloudinary.*my_twitter_handle\.jpg")
-      end
-      it 'should render image tag using the URL saved on the ExternalIdentity model' do
-        user = User.create(
-          updated_at: Date.parse('2024-01-01').end_of_day
-        )
-        user.external_identities.create(
-          handle: 'my_twitter_handle',
-          provider: 'twitter',
-          uid: '123456',
-          image: 'https://pbs.twimg.com/profile_images/123456789/my_selfie.jpg'
-        )
-        image_url = helper.get_twitter_image(user)
-        expect(image_url).to_not match("my_twitter_handle\.jpg")
-        expect(image_url).to match("my_selfie\.jpg")
+      it 'should render image tag with the github handle from active storage' do
+        user = User.create(updated_at: Date.parse('2022-12-31').end_of_day)
+        user.external_identities.create(handle: "my_github_handle", provider: "github", uid: "252150")
+
+        image_path = Rails.root.join('app', 'assets', 'images', 'rails.png')
+        user.github_identity.profile_image.attach(io: File.open(image_path), filename: 'my_github_handle.png')
+    
+        generated_url = helper.get_profile_image(user)
+    
+        expect(generated_url).to match("profile_image.*my_github_handle\.png")
       end
     end
   end
