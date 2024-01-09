@@ -25,15 +25,17 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.2'
 
 
 gem 'twitter', '~> 6.2.0'
 gem 'sentry-raven', '~> 2.11'
 
-gem "devise", "~> 4.7.3"
-gem "omniauth", "~>1.9.0"
+gem 'devise', '~> 4.9', '>= 4.9.2'
+gem 'omniauth', '~> 2.1', '>= 2.1.1'
 gem "omniauth-twitter", "~> 1.4.0"
+gem 'omniauth-github', '~> 2.0.0'
+gem "omniauth-rails_csrf_protection"
 gem "haml-rails", "~> 2.0.1"
 gem "twitter-bootstrap-rails", "~> 5.0.0"
 gem "redcarpet", "~> 1.17.2"
@@ -80,3 +82,4 @@ gem 'simplecov', require: false, group: :test
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'mimemagic', github: 'mimemagicrb/mimemagic', ref: '01f92d86d15d85cfd0f20dabd025dcbd36a8a60f'
+
