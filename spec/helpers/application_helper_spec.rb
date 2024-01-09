@@ -17,7 +17,7 @@ RSpec.describe ApplicationHelper, type: :helper do
 
     context 'get_profile_image for User' do
       it 'should render image tag with the twitter handle from active storage' do
-        user = User.create(updated_at: Date.parse('2022-12-31').end_of_day)
+        user = User.create(name: "Test")
         user.external_identities.create(handle: "my_twitter_handle", provider: "twitter", uid: "252152")
 
         image_path = Rails.root.join('app', 'assets', 'images', 'rails.png')
@@ -28,7 +28,7 @@ RSpec.describe ApplicationHelper, type: :helper do
         expect(generated_url).to match("profile_image.*my_twitter_handle\.png")
       end
       it 'should render image tag with the github handle from active storage' do
-        user = User.create(updated_at: Date.parse('2022-12-31').end_of_day)
+        user = User.create(name: "Test")
         user.external_identities.create(handle: "my_github_handle", provider: "github", uid: "252150")
 
         image_path = Rails.root.join('app', 'assets', 'images', 'rails.png')
