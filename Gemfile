@@ -1,13 +1,17 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+
 ruby '3.2.2'
 
-gem 'rails', '~> 6.1.4.4'
+
+gem 'rails', '~> 7.1.2'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'dotenv-rails', '~> 2.7', '>= 2.7.4'
 gem 'pg'
+
 
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
@@ -24,12 +28,16 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
 
 
+
+
 gem 'twitter', '~> 6.2.0'
 gem 'sentry-raven', '~> 2.11'
+
 
 gem 'devise', '~> 4.9', '>= 4.9.2'
 gem 'omniauth', '~> 2.1', '>= 2.1.1'
@@ -39,24 +47,27 @@ gem "omniauth-rails_csrf_protection"
 gem "haml-rails", "~> 2.0.1"
 gem "twitter-bootstrap-rails", "~> 5.0.0"
 gem "redcarpet", "~> 1.17.2"
-gem "nokogiri", "~> 1.12.5"
+gem 'nokogiri', '~> 1.16'
+
 
 gem 'newrelic_rpm'
-gem "activeadmin", "~> 2.9.0"
+gem 'activeadmin', '~> 3.2'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '~> 1.9.2', require: false
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
-
-
 end
+
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 4.1.0'
+  gem 'web-console', '~> 4.2', '>= 4.2.1'
+
+  gem 'better_errors', '~> 2.10', '>= 2.10.1'
   # Display performance information such as SQL time and flame graphs for each request in your browser.
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
   gem 'rack-mini-profiler', '~> 2.0'
@@ -65,6 +76,7 @@ group :development do
   gem 'spring'
   gem 'pry', '~> 0.14.2'
 end
+
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
@@ -81,5 +93,5 @@ gem 'simplecov', require: false, group: :test
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'mimemagic', github: 'mimemagicrb/mimemagic', ref: '01f92d86d15d85cfd0f20dabd025dcbd36a8a60f'
 
+gem 'mimemagic', github: 'mimemagicrb/mimemagic', ref: '01f92d86d15d85cfd0f20dabd025dcbd36a8a60f'
